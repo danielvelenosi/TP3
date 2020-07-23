@@ -8,35 +8,41 @@ classdef Consommation < handle
     
     methods (Access = public)
         %Constructeur
-        function Consommation = Consommation(combinee,ville,autoroute)
-            Consommation.combinee = combinee;
-            Consommation.ville = ville;
-            Consommation.autoroute = autoroute;
+        function consommation = Consommation(combinee,ville,autoroute)
+            consommation.combinee = combinee;
+            consommation.ville = ville;
+            consommation.autoroute = autoroute;
         end
         
         %Accesseur
-        function combinee = getCombinee(Consommation)
-            combinee = Consommation.combinee;
+        function combinee = getCombinee(consommation)
+            combinee = consommation.combinee;
         end
-        function ville = getVille(Consommation)
-            ville = Consommation.ville;
+        function ville = getVille(consommation)
+            ville = consommation.ville;
         end
-        function autoroute = getAutoroute(Consommation)
-            autoroute = Consommation.autoroute;
+        function autoroute = getAutoroute(consommation)
+            autoroute = consommation.autoroute;
         end
         
 
         %Mutateur
-        function setCombinee(Consommation,combinee)
-            Consommation.combinee = combinee;
+        function setCombinee(consommation,combinee)
+            consommation.combinee = combinee;
         end
-        function setVille(Consommation,ville)
-            Consommation.ville = ville;
+        function setVille(consommation,ville)
+            consommation.ville = ville;
         end
-        function setAutoroute(Consommation,autoroute)
-            Consommation.autoroute = autoroute;
+        function setAutoroute(consommation,autoroute)
+            consommation.autoroute = autoroute;
         end
         
+        %Affichage
+        function disp(consommation)
+          fprintf('\t\Consommation combinée             : %.2f kWh/100km\n', consommation.combinee);
+          fprintf('\t\Consommation en ville             : %.2f kWh/100km\n', consommation.ville);
+          fprintf('\t\Consommation sur l''autoroute     : %.2f kWh/100km\n', consommation.autoroute);
+        end
     end
 end
 
