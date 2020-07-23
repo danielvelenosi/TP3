@@ -7,10 +7,11 @@
 % -------------------------------------------------------------------------
 classdef Voiture < handle
     properties (Access = private)
+        nbVoiture;
         marque;
         modele;
         annee;
-        consommation = Consommation();
+        consommation Consommation;
 %         cons_comb;
 %         cons_ville;
 %         cons_autoroute;
@@ -18,11 +19,14 @@ classdef Voiture < handle
 	
 	methods (Access = public)
         % Construnteur
-	    function voiture = Voiture(marque,modele,annee)
+	    function voiture = Voiture(marque,modele,annee,consommation)
         %function voiture = Voiture(marque,modele,annee,cons_comb,cons_ville,cons_autoroute)
 		    nouveau.marque = marque;
 		    nouveau.modele = modele;
 		    nouveau.annee = annee;
+            nouveau.consommation.combinee = consommation.combinee;
+            nouveau.consommation.ville = consommation.ville;
+            nouveau.consommation.autoroute = consommation.autoroute;
 %             nouveau.cons_comb = cons_comb;
 %             nouveau.cons_ville = cons_ville;
 %             nouveau.cons_autoroute = cons_autoroute;
