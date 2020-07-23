@@ -14,6 +14,7 @@ classdef Consommation < handle
             consommation.autoroute = autoroute;
         end
         
+       
         %Accesseur
         function combinee = getCombinee(consommation)
             combinee = consommation.combinee;
@@ -25,7 +26,6 @@ classdef Consommation < handle
             autoroute = consommation.autoroute;
         end
         
-
         %Mutateur
         function setCombinee(consommation,combinee)
             consommation.combinee = combinee;
@@ -35,13 +35,13 @@ classdef Consommation < handle
         end
         function setAutoroute(consommation,autoroute)
             consommation.autoroute = autoroute;
-        end
-        
+        end        
+      
         %Affichage
         function disp(consommation)
-          fprintf('\t\Consommation combinée             : %.2f kWh/100km\n', consommation.combinee);
-          fprintf('\t\Consommation en ville             : %.2f kWh/100km\n', consommation.ville);
-          fprintf('\t\Consommation sur l''autoroute     : %.2f kWh/100km\n', consommation.autoroute);
+          fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (consommation.combinee));
+          fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (consommation.ville));
+          fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (consommation.autoroute));
         end
     end
 end
