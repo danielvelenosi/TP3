@@ -10,7 +10,7 @@ classdef Voiture < handle
         marque;
         modele;
         annee;
-%         consommation = Consommation();
+        consommation = Consommation();
 %         cons_comb;
 %         cons_ville;
 %         cons_autoroute;
@@ -26,8 +26,41 @@ classdef Voiture < handle
 %             nouveau.cons_comb = cons_comb;
 %             nouveau.cons_ville = cons_ville;
 %             nouveau.cons_autoroute = cons_autoroute;
-		end
+        end
 		
+        % Accesseur
+        function nbVoiture = getNbVoiture(voiture)
+            nbVoiture = voiture.nbVoiture;
+        end
+        
+        function marque = getMarque(voiture)
+            marque = voiture.marque;
+        end
+        
+        function modele = getModele(voiture)
+            modele = voiture.modele;
+        end
+        
+        function annee = getAnnee(voiture)
+            annee = voiture.annee;
+        end
+        
+        % Mutateurs
+        function setNbVoiture(voiture)
+            voiture.nbVoiture  = nbVoiture;
+        end
+        
+        function setMarque(voiture)
+            voiture.marque  = marque;
+        end
+        
+        function setModele(voiture)
+            voiture.modele  = modele;
+        end
+        
+        function setAnnee(voiture)
+            voiture.annee  = annee;
+        end
 % 	    function setVitesse(lui, vitesse)
 % 		    lui.vitesse = vitesse;
 %         end
