@@ -6,12 +6,12 @@
 %                 avec les paramètres suivants:
 % -------------------------------------------------------------------------
 classdef Voiture < handle
-    properties (Access = private)
-        nbVoiture;
+    properties (Access = public)
+        %nbVoiture;
         marque;
         modele;
         annee;
-        consommation = Consommation();
+        consommation Consommation;
 %         cons_comb;
 %         cons_ville;
 %         cons_autoroute;
@@ -19,14 +19,15 @@ classdef Voiture < handle
 	
 	methods (Access = public)
         % Construnteur
-	    function voiture = Voiture(marque,modele,annee,consommation)
+	    function voiture = Voiture(marque,modele,annee,combinee,ville,autoroute)
         %function voiture = Voiture(marque,modele,annee,cons_comb,cons_ville,cons_autoroute)
-		    nouveau.marque = marque;
-		    nouveau.modele = modele;
-		    nouveau.annee = annee;
-            nouveau.consommation.combinee = consommation.combinee;
-            nouveau.consommation.ville = consommation.ville;
-            nouveau.consommation.autoroute = consommation.autoroute;
+		    voiture.marque = marque;
+		    voiture.modele = modele;
+		    voiture.annee = annee;
+            voiture.consommation = Consommation(combinee,ville,autoroute);
+
+%             nouveau.consommation.ville = consommation.ville;
+%             nouveau.consommation.autoroute = consommation.autoroute;
 %             nouveau.cons_comb = cons_comb;
 %             nouveau.cons_ville = cons_ville;
 %             nouveau.cons_autoroute = cons_autoroute;
@@ -74,7 +75,14 @@ classdef Voiture < handle
 % 		    voiture.position(1) = voiture.position(1)+voiture.vitesse*0.01*cos(voiture.direction);
 % 		    voiture.position(2) = voiture.position(2)+voiture.vitesse*0.01*sin(voiture.direction);
 % 		end
-		
+
+
+%         function disp(voiture.consommation)
+%           fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (consommation.combinee));
+%           fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (consommation.ville));
+%           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (consommation.autoroute));
+%         end		
+
 % 	    function disp(voiture)
 % 		    figure(1);
 % 			hold on;

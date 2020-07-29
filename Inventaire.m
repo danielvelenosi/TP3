@@ -3,7 +3,7 @@ classdef Inventaire < handle
     %   Detailed explanation goes here
     
     properties (Access = private)
-        voiture = Voiture();
+        voiture Voiture;
     end
     
 %     methods (Access = public)
