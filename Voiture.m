@@ -11,7 +11,7 @@ classdef Voiture < handle
         marque;
         modele;
         annee;
-        consommation Consommation;
+        consommation = Consommation();
 %         cons_comb;
 %         cons_ville;
 %         cons_autoroute;
