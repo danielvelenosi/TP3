@@ -14,7 +14,6 @@ classdef Consommation < handle
             consommation.autoroute = autoroute;
         end
         
-       
         %Accesseur
         function combinee = getCombinee(consommation)
             combinee = consommation.combinee;
