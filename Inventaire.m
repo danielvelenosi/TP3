@@ -3,42 +3,65 @@ classdef Inventaire < handle
     %   Detailed explanation goes here
     
     properties (Access = private)
-        id;
         voiture Voiture;
     end
     
     methods (Access = public)
-        %Constructeur
-        function inventaire = Inventaire(id,marque,modele,annee,combinee,ville,autoroute)
-            inventaire.id = id;
-            inventaire.voiture = Voiture(marque,modele,annee,combinee,ville,autoroute);           
-        end
+        %Charger l'inventaire
         
-        %Accesseur
-        function id = getId(inventaire)
-            id = inventaire.id;
-        end
+    end
+    
+    methods (Access = public)
+        %Ajouter une voiture
+               
+    end
+    
+    methods (Access = public)
+      % Supprimer une voiture
+      
+    end
+    
+    methods (Access = public)
+      %Modifier une voiture
+      
+    end
+    
+    methods (Access = public)
+      %Sauvegarder l'inventaire de voiture
+      
+    end
+    
+    methods (Access = public)
+      %Afficher l'inventaire de voiture
+      
+    end
+    
+    methods (Access = public)
+      %Trouver les meilleures voitures
+      
+    end
+    
+    methods (Access = public)
+      %Afficher les meilleures voitures
+      
+    end
+    
+    
         
-%         function marque = getMarque(inventaire)
-%            marque = inventaire.voiture.marque; 
-%         end
+      
         
         
-        %Mutateur
-        function setId(inventaire,id)
-            inventaire.id = id;
-        end
+        
         
         %Affichage
-        function disp(inventaire)
-          fprintf('\t ID                                : %d \n', (inventaire.id));  
-          fprintf('\t Marque                            : %s \n', (inventaire.voiture.marque));
-          fprintf('\t Modele                            : %s \n', (inventaire.voiture.modele));
-          fprintf('\t Annee                             : %s \n', (inventaire.voiture.annee));
-          fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (inventaire.voiture.consommation.combinee));
-          fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (inventaire.voiture.consommation.ville));
-          fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (inventaire.voiture.consommation.autoroute));
-        end
-    end 
+%         function disp(inventaire)
+%           fprintf('\t ID                                : %d \n', (inventaire.id));  
+%           fprintf('\t Marque                            : %s \n', (inventaire.voiture.marque));
+%           fprintf('\t Modele                            : %s \n', (inventaire.voiture.modele));
+%           fprintf('\t Annee                             : %s \n', (inventaire.voiture.annee));
+%           fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (inventaire.voiture.consommation.combinee));
+%           fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (inventaire.voiture.consommation.ville));
+%           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (inventaire.voiture.consommation.autoroute));
+%         end   
 end
 

@@ -13,7 +13,7 @@
 % VARIABLES UTILISÉES :
 % 
 %--------------------------------------------------------------------------
-function monVoiture = lireData()
+function maVoiture = lireData()
     % Initialisation des variables
     i = 1;
     % Ouvrir data.txt
@@ -32,7 +32,7 @@ function monVoiture = lireData()
             ville = double(string(data(6)));
             autoroute = double(string(data(7)));
             
-            monVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
+            maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
             i = i + 1;
         end
         fclose(fid);
