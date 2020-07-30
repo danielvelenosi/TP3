@@ -42,11 +42,11 @@ classdef Voiture < handle
             annee = voiture.annee;
         end
         
-        % Mutateurs
-%         function setNbVoiture(voiture)
-%             voiture.nbVoiture  = nbVoiture;
-%         end
-        
+        function combinee = getCombinee(voiture)
+            combinee = voiture.consommation.combinee;
+        end
+                
+       %Mutateur
         function setMarque(voiture,marque)
             voiture.marque  = marque;
         end
@@ -58,15 +58,20 @@ classdef Voiture < handle
         function setAnnee(voiture,annee)
             voiture.annee  = annee;
         end
+        
+        function setCombinee(voiture,combinee)
+            voiture.consommation.combinee = combinee;
+        end
+        
 
-%         % Affichage
-%         function disp(voiture)
-%           fprintf('\t Marque                            : %s \n', (voiture.marque));
-%           fprintf('\t Modele                            : %s \n', (voiture.modele));
-%           fprintf('\t Annee                             : %s \n', (voiture.annee));
-%           fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (voiture.consommation.combinee));
-%           fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (voiture.consommation.ville));
-%           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (voiture.consommation.autoroute));
-%         end		
+        % Affichage
+        function disp(voiture)
+          fprintf('\t Marque                            : %s \n', (voiture.marque));
+          fprintf('\t Modele                            : %s \n', (voiture.modele));
+          fprintf('\t Annee                             : %s \n', (voiture.annee));
+          fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (voiture.consommation.combinee));
+          fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (voiture.consommation.ville));
+          fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (voiture.consommation.autoroute));
+        end		
     end
 end
