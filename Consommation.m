@@ -36,11 +36,11 @@ classdef Consommation < handle
             consommation.autoroute = autoroute;
         end        
       
-        %Affichage
-        function disp(consommation)
-          fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (consommation.combinee));
-          fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (consommation.ville));
-          fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (consommation.autoroute));
+%         %Affichage
+%         function disp(consommation)
+%           fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (consommation.combinee));
+%           fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (consommation.ville));
+%           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (consommation.autoroute));
         end
     end
 end
