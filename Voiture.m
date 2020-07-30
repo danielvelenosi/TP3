@@ -6,7 +6,7 @@
 %                 avec les paramètres suivants:
 % -------------------------------------------------------------------------
 classdef Voiture < handle
-    properties (Access = private)
+    properties (Access = public)
         marque;
         modele;
         annee;
@@ -15,11 +15,11 @@ classdef Voiture < handle
 	
 	methods (Access = public)
         % Constructeur
-	    function voiture = Voiture(marque,modele,annee,combinee,ville,autoroute)
+	    function voiture = Voiture(marque,modele,annee,consommation)
 		    voiture.marque = marque;
 		    voiture.modele = modele;
 		    voiture.annee = annee;
-            voiture.consommation = Consommation(combinee,ville,autoroute);
+            voiture.consommation = consommation;
 
 
 %             nouveau.consommation.ville = consommation.ville;
@@ -42,9 +42,9 @@ classdef Voiture < handle
             annee = voiture.annee;
         end
         
-        function combinee = getCombinee(voiture)
-            combinee = voiture.consommation.combinee;
-        end
+%         function combinee = getCombinee(voiture)
+%             combinee = voiture.consommation.combinee;
+%         end
                 
        %Mutateur
         function setMarque(voiture,marque)
@@ -59,9 +59,9 @@ classdef Voiture < handle
             voiture.annee  = annee;
         end
         
-%         function setCombinee(voiture,combinee)
-%             voiture.consommation.combinee = combinee;
-%         end
+        function setConsommation(voiture,combinee)
+            voiture.consommation = combinee;
+        end
         
 
         % Affichage

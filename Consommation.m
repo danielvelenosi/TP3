@@ -1,5 +1,5 @@
 classdef Consommation < handle
-    properties (Access = private)
+    properties (Access = public)
         combinee;
         ville;
         autoroute;
