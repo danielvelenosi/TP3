@@ -7,6 +7,7 @@
 % -------------------------------------------------------------------------
 classdef Voiture < handle
     properties (Access = public)
+        nbVoiture;
         marque;
         modele;
         annee;
@@ -15,8 +16,9 @@ classdef Voiture < handle
 	
 	methods (Access = public)
         % Constructeur
-	    function voiture = Voiture(marque,modele,annee,consommation)
-		    voiture.marque = marque;
+	    function voiture = Voiture(nbVoiture,marque,modele,annee,consommation)
+		    voiture.nbVoiture = nbVoiture;
+            voiture.marque = marque;
 		    voiture.modele = modele;
 		    voiture.annee = annee;
             voiture.consommation = consommation;
@@ -30,6 +32,10 @@ classdef Voiture < handle
         end
 		
         % Accesseur       
+        function nbVoiture = getNbVoiture(voiture)
+            nbVoiture = voiture.nbVoiture;
+        end
+        
         function marque = getMarque(voiture)
             marque = voiture.marque;
         end
@@ -47,7 +53,11 @@ classdef Voiture < handle
 %         end
                 
        %Mutateur
-        function setMarque(voiture,marque)
+        function setNbVoiture(voiture,nbVoiture)
+            voiture.nbVoiture  = nbVoiture;
+        end
+       
+       function setMarque(voiture,marque)
             voiture.marque  = marque;
         end
         

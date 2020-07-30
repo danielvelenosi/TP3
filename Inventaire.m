@@ -2,13 +2,15 @@ classdef Inventaire < handle
     %INVENTAIRE Summary of this class goes here
     %   Detailed explanation goes here
     
-    properties (Access = private)
+    properties (Access = public)
         voiture Voiture;
     end
     
     methods (Access = public)
         %Charger l'inventaire
-        
+        function inventaire = Inventaire(voiture)
+            inventaire.voiture = voiture;
+        end
     end
     
     methods (Access = public)
@@ -33,7 +35,11 @@ classdef Inventaire < handle
     
     methods (Access = public)
       %Afficher l'inventaire de voiture
-      
+%       function lesVoitures(voiture)
+%           for i = 1: numel(maVoiture)
+%               disp(maVoiture(i));
+%           end
+%       end
     end
     
     methods (Access = public)
