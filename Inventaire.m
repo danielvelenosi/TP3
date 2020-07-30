@@ -19,9 +19,9 @@ classdef Inventaire < handle
             id = inventaire.id;
         end
         
-        function marque = getMarque(inventaire)
-           marque = inventaire.voiture.marque; 
-        end
+%         function marque = getMarque(inventaire)
+%            marque = inventaire.voiture.marque; 
+%         end
         
         
         %Mutateur

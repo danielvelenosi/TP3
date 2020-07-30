@@ -59,9 +59,9 @@ classdef Voiture < handle
             voiture.annee  = annee;
         end
         
-        function setCombinee(voiture,combinee)
-            voiture.consommation.combinee = combinee;
-        end
+%         function setCombinee(voiture,combinee)
+%             voiture.consommation.combinee = combinee;
+%         end
         
 
         % Affichage
