@@ -16,6 +16,10 @@ function tableauTrie = trierResultat(tableau2D)
 %   i,j             : Compteurs dans les boucles.
 %-------------------------------------------------------------------------------
 
+% Initialisation des constantes
+COLONNE1 = 1;
+COLONNE2 = 2;
+
 % Initialisation du trableau trié
 tableauTrie = tableau2D;
 
@@ -25,23 +29,23 @@ nbLignes = size(tableau2D, 1);
 % Boucle pour trier les informations (colonne 2)
 for i = nbLignes : -1 : 1
     for j = 1 : nbLignes - 1
-        if tableauTrie(j + 1, 2) < tableauTrie(j, 2)
+        if tableauTrie(j + 1, COLONNE2) < tableauTrie(j, COLONNE2)
             
             % On garde les valeurs que l'on veut échanger dans une variable
             % temporaire
-            temp = [tableauTrie(j + 1, 1), tableauTrie(j + 1, 2)];
+            temp = [tableauTrie(j + 1, COLONNE1), tableauTrie(j + 1, COLONNE2)];
             
             % On remplace la plus petite valeur par la plus grande pour la
             % consommation.
-            tableauTrie(j + 1, 2) = tableauTrie(j, 2);
+            tableauTrie(j + 1, COLONNE2) = tableauTrie(j, COLONNE2);
             
             % On remplace l'identifiant de la voiture.
-            tableauTrie(j + 1, 1) = tableauTrie(j, 1);
-            tableauTrie(j, 1) = temp(1,1);
+            tableauTrie(j + 1, COLONNE1) = tableauTrie(j, COLONNE1);
+            tableauTrie(j, COLONNE1) = temp(1,COLONNE1);
             
             % On remplace la nouvelle valeur et le nouveau identifiant à
             % partir de la matrice temporaire.
-            tableauTrie(j, 2) = temp(1, 2);
+            tableauTrie(j, COLONNE2) = temp(1, COLONNE2);
         end
     end
 end
