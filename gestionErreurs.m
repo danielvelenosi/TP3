@@ -8,6 +8,7 @@ function erreur = gestionErreurs(message, gravite)
 % PARAMÈTRES :
 %       message : Chaîne de charactères représentant le message d'erreur à
 %                 afficher et la gravité de l'erreur.
+%       gravité : La gravité de l'erreur. 0 ou 1
 %-------------------------------------------------------------------------------
 % RETOUR :
 %       erreur : Message d'erreur.
