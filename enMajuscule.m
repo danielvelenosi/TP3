@@ -7,6 +7,7 @@ function enMajuscule(chaine)
 % DESCRIPTION   : Fonction qui reçoit une chaîne de caractère et retourne 
 %                 cette chaîne en majuscules.
 % -------------------------------------------------------------------------
- fprintf('%s\n',upper(chaine));
+% Dan needs to do it with ASCII 
+fprintf('%s\n',upper(chaine));
  
  end

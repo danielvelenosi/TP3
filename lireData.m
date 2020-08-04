@@ -17,7 +17,7 @@ function maVoiture = lireData()
     % Initialisation des variables
     i = 1;
     % Ouvrir data.txt
-    fid = fopen('data.txt','r');
+    fid = fopen('data.txt','w');
     %Look up fid ... why is fid = 6 in workspace when running lireData with
     %breakpoint?
     if fid ~= -1
