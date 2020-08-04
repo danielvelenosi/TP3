@@ -13,11 +13,12 @@
 % VARIABLES UTILISÉES :
 % 
 %--------------------------------------------------------------------------
-function maVoiture = lireData()
+function lesVoiture = lireData()
     % Initialisation des variables
     i = 1;
+    lesVoiture = [];
     % Ouvrir data.txt
-    fid = fopen('data.txt','w');
+    fid = fopen('data.txt','r');
     %Look up fid ... why is fid = 6 in workspace when running lireData with
     %breakpoint?
     if fid ~= -1
@@ -39,10 +40,11 @@ function maVoiture = lireData()
             %autoroute = double(data(7));
             
             % I tried all of these and none worked
-            %maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
+            lesVoiture = [lesVoiture;data];
+            %lesVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
             %maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,combinee,ville,autoroute);
             %maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation);
-            %maVoiture(i) = Inventaire(voiture);
+            %lesVoiture(i) = Inventaire(voiture);
             %maVoiture(i) = Inventaire(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
 
             i = i + 1;

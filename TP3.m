@@ -13,7 +13,7 @@
 % VARIABLES UTILISÉES :
 % 
 %--------------------------------------------------------------------------
-function [outputArg1,outputArg2] = TP3(inputArg1,inputArg2)
+function TP3()
 
 %addpath
 
@@ -31,8 +31,9 @@ function [outputArg1,outputArg2] = TP3(inputArg1,inputArg2)
 
 % Gestion du menu
 % One of these below
+% 1) Charger l'inventaire
 inventaire = lireData();
-voiture = lireData();
+% voiture = lireData();
 
 % Fonction Gestion des erreurs
 
