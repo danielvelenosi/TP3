@@ -12,7 +12,7 @@ classdef Inventaire < handle
             i = 1;
             lesVoiture = [];
             % Ouvrir data.txt
-            fid = fopen('data.txt','r');
+            fid = fopen('data.txt','w');
             %Look up fid ... why is fid = 6 in workspace when running lireData with
             %breakpoint?
             if fid ~= -1
@@ -44,8 +44,8 @@ classdef Inventaire < handle
                     i = i + 1;
                 end
                 fclose(fid);
-            else
-                error('Error Message');
+%             else
+%                 error('Error Message');
             end
         end
     end
@@ -71,9 +71,27 @@ classdef Inventaire < handle
     end
     
     methods (Access = public)
-        % Afficher l'inventaire de voiture
-        function disp(lesVoiture)
-        end
+%         % Afficher l'inventaire de voiture
+       
+
+%         function voiture = getVoiture(lesVoiture)
+%             %Vecteur dimension de la matrice lesVoiture
+%             sizeVoiture = size(lesVoiture);
+%             %Initialisation compteur pour les lignes
+%             i = 1;
+%             %Initialisation compteur pour les colonnes
+%             j = 1;
+%             %Nombre de lignes
+%             m = sizeVoiture(1);
+%             %Nombre de colonnes
+%             n = sizeVoiture(2);      
+    %             for i = 1 : m
+    %                 for j = 1 : n
+    %                     voiture(i,j) = lesVoiture(i,j); 
+    %                 end
+    %             end
+    %             disp(voiture)
+%         end
     end
 
     
@@ -86,13 +104,7 @@ classdef Inventaire < handle
       %Afficher les meilleures voitures
       
     end
-    
-    
-        
-      
-        
-        
-        
+
         
         %Affichage
 %         function disp(inventaire)
