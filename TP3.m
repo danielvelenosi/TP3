@@ -14,48 +14,67 @@
 %
 %--------------------------------------------------------------------------
 function TP3()
-
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
 % addpath('Constantes');
-monInv = Inventaire();
-
-% Affichage du menu
-affichageMenu();
-choix = input('# ');
 
 
-while choix ~= 1
-    fprintf('L''inventaire doit préalablement être chargé\n');
-    affichageMenu();
-    choix = saisirChoix('#');
-end   
 
-if choix == 1
+
+% monInv = Inventaire();
+% 
+% % Affichage du menu
+% affichageMenu();
+% choix = input('# ');
+
+
+% while choix ~= 1
+%     fprintf('L''inventaire doit préalablement être chargé\n');
+%     affichageMenu();
+%     choix = saisirChoix('#');
+% end   
+
+%Initialisation des variables
+invCharger = false;
+sauvegarder = false;
+quit = false;
+
+ while quit ~= 1
+       affichageMenu();
+       choix = saisirChoix('#');
+  
     switch choix
-        
-        case 1 % Charger inventaire
-            monInv = Inventaire();
-            affichageMenu();
-            choix = saisirChoix('#');
-            
-    end
-        if choix ~= 1
-            switch choix
+%         while invCharger == false 
+%             fprintf('L''inventaire doit être préalablement chargé\n')
+
+
+                case 1 % Charger inventaire
+                monInv = Inventaire();
+                invCharger = true;
+                fprintf('L''inventaire à été chargé\n')
+
+
                 case 2 % Afficher les caractéristiques d'une voiture
-                    
+                    if invCharger == true
                     nbVoiture = saisirChoix('Quelle voiture voulez-vous voir ? '); 
-                    disp(monInv,nbVoiture)
-                    affichageMenu()
-                    
+                    disp(monInv.voiture(nbVoiture))  
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end
+
+
                 case 3 % Afficher les caractéristiques de toutes les voitures
+                    if invCharger == true
+                    disp(monInv) 
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end
                     
-                    disp(monInv)                  
-                    affichageMenu()
-     
+
+
                 case 4 % Ajouter un véhicule
-                    
+                    if invCharger == true
                     nbVoiture = saisirChoix('Numéro d''identification: ');
                     marque = saisirChoix('Marque: ');
                     modele = saisirChoix('Modele: ');
@@ -64,44 +83,64 @@ if choix == 1
                     ville = saisirChoix('Consommation en ville: ');
                     autoroute = saisirChoix('Consommation sur l''autoroute: ');
                     creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute);
-                    affichageMenu()                   
-                    
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end
+
+
                 case 5 % Supprimer un véhicule
-                    
+                    if invCharger == true
                     nbVoiture = saisirChoix('Quel voiture voulez-vous supprimer? ');
                     supprimerVoiture(monInv,nbVoiture);
                     fprintf('La voiture à bien été supprimée\n')
-                    affichageMenu()
-                    
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end
+
+
                 case 6 % Modifier un véhicule
-                    
+                    if invCharger == true
                     nbVoiture = saisirChoix('Quelle voiture voulez-vous modifier? \n');
                     %i = saisirChoix('Quel attribut voulez-vous modifier? \n');
                     %disp(monInv(i))
                     modifierVoiture(monInv,nbVoiture)
-                    affichageMenu()
-                    
-                case 7 % Sauvegarder l''inventaire
-                    
-                    sauvegardeMonInv(monInv)
-                    fprintf('Le fichier à été enregistré');
-                    affichageMenu()
-                    
-                case 8 % Afficher k meilleur
-                    
-                    
-                case 9 % Quitter
-                    choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
-                    if choix == O || choix == o
-                        sauvegardeMonInv(monInv)
-                    else
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
                     end
-                    
-                otherwise
-            end
-        end
-    end
+
+                case 7 % Sauvegarder l''inventaire
+                    if invCharger == true
+                    sauvegardeMonInv(monInv)
+                    sauvegarder = true;
+                    fprintf('Le fichier à été enregistré');
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end
+
+
+                case 8 % Afficher k meilleur
+                    if invCharger == true
+                        
+                        
+                    else 
+                      fprintf('L''inventaire doit être préalablement chargé\n')  
+                    end  
+                        
+
+                case 9 % Quitter
+                     quit = true;
+%                             choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
+%                             if choix == O || choix == o
+%                                 sauvegardeMonInv(monInv)
+%                            else
+    end 
+ 
     
+ end
+                 
+end
+%end
+        
 % else
 %     fprintf('L''inventaire doit préalablement être chargé\n');
 %     TP3();
@@ -109,4 +148,3 @@ if choix == 1
 % rmpath('Voiture');
 % rmpath('Consommation');
 % rmpath('Constantes');
-end
