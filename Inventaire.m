@@ -110,11 +110,24 @@ classdef Inventaire < handle
     
     methods (Access = public)
       %Sauvegarder l'inventaire de voiture
-      
+      function sauvegardeMonInv(monInv)
+          fid = fopen('data.txt','w');
+            if fid == -1
+                error('Le fichier n''a pu être sauvegardé.');
+            end
+            fclose(fid);
+            fprintf('Le fichier à été enregistré');  
+      end
     end
     
     methods (Access = public)
         % Afficher l'inventaire de voiture
+        function disp(monInv)
+            for i = 1:numel(monInv.voiture)
+                fprintf('*********************** VOITURE #%d ***********************\n',i);
+                disp(monInv.voiture(i))                
+            end
+        end
     end
 
     
