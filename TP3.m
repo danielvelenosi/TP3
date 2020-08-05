@@ -42,8 +42,8 @@ choix = input('# ');
 % Elle enregistre les résultats dans un fichier texte. Voir l’annexe pour avoir une idée du résultat attendu.
 
 while choix ~= 1
-affichageMenu();
-fprintf('L''inventaire doit préalablement être chargé\n');
+    fprintf('L''inventaire doit préalablement être chargé\n');
+    affichageMenu();
     choix = input('# ');
 end   
 
