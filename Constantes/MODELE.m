@@ -1,3 +1,3 @@
 function x = MODELE
-    x = 3;
+    x = 2;
 end

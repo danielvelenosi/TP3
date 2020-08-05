@@ -1,3 +1,3 @@
 function x = AUTOROUTE
-    x = 7;
+    x = 6;
 end

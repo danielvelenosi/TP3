@@ -1,3 +1,3 @@
 function x = ANNEE
-    x = 4;
+    x = 3;
 end

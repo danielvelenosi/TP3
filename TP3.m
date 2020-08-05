@@ -52,8 +52,7 @@ if choix == 1
     switch choix
         
         case 1 % Charger inventaire
-            %monInventaire = Inventaire();
-            lesVoiture = monInventaire.voiture();
+            monInv = Inventaire();
             affichageMenu();
             choix = input('# ');
             
@@ -80,7 +79,7 @@ if choix == 1
                     combinee = input('Consommation combinée: \n');
                     ville = input('Consommation en ville: \n');
                     autoroute = input('Consommation sur l''autoroute: \n');
-                    voiture = creerVoiture(nbVoiture,marque,modele,annee,combinee,ville,autoroute);
+                    creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute);
                     affichageMenu()
                     
                 case 5 % Supprimer un véhicule

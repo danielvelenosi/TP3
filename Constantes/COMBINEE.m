@@ -1,3 +1,3 @@
 function x = COMBINEE
-    x = 5;
+    x = 4;
 end
