@@ -214,4 +214,3 @@ classdef Inventaire < handle
 %           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (inventaire.voiture.consommation.autoroute));
 %         end   
 end
-
