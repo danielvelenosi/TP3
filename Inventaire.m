@@ -65,29 +65,47 @@ classdef Inventaire < handle
     end
     
     methods (Access = public)
-    %Modifier une voiture
-      
-    function modifierVoiture(monInv, nbVoiture)
-        i =1;
+        %Modifier une voiture
         
-            
-        
-        
-        
-        
-        
+        function modifierVoiture(monInv, nbVoiture)
+            i =1;
+            while i < ATTRIBUTS
+                if monInv.voiture(i).getNbVoiture == nbVoiture
+                    choixModAttribut()
+                    choix = saisirChoix();
+                    
+                    switch choix
+                        case MARQUE
+                            monInv.voiture(i).setMarque(input('Entrer la nouvelle marque: \n','s'))
+                            
+                        case MODELE
+                            monInv.voiture(i).setModele(input('Entrer le nouveau modèle: \n','s'))
+                            
+                        case ANNEE
+                            monInv.voiture(i).setAnnee(input ...
+                            ('Entrer la nouvelle année: \n','s'))
+                            
+                        case COMBINEE
+                            monInv.consommation(i).setCombinee(input ... 
+                            ('Entrer la nouvelle consommation combinée: \n','s'))
+                            
+                        case VILLE
+                            monInv.consommation(i).setVille(input ...
+                            ('Entrer la nouvelle consommation en ville: \n','s'))
+                            
+                        case AUTOROUTE
+                            monInv.consommation(i).setAutoroute(input ...
+                            ('Entrer la nouvelle consommation sur l''autoroute: \n','s'))
+                            
+                        case QUITTER
+                            fprintf('Fin des modifications\n')
+                            i = 7;
+                    end
+                end
+            end
+            i = i + 1;
         end
-    
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+        
     end
     
     methods (Access = public)
