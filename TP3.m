@@ -91,7 +91,11 @@ if choix == 1
                     
                 case 6 % Modifier un véhicule
                     fprintf('#6 \n');
-                    
+                    nbVoiture = input('Quelle voiture voulez-vous modifier? \n');
+                    i = input('Quel attribut voulez-vous modifier? \n');
+                    disp(monInv(i))
+                    %choix = saisirChoix('Quel attribut voulez-vous modifier?',1,7);
+                    modifierVoiture(monInv,nbVoiture)
                     affichageMenu()
                     
                 case 7 % Sauvegarder l''inventaire
@@ -106,7 +110,7 @@ if choix == 1
                 case 9 % Quitter
                     choix_quit = input('Voulez-vous sauvegarder avant de quitter? (O/N) ');
                     if choix == O || choix == o
-                        
+                        sauvegardeMonInv(monInv)
                     else
                     end
                     
