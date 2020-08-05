@@ -102,7 +102,6 @@ quit = false;
                     if invCharger == true
                     nbVoiture = str2num(saisirChoix('Quelle voiture voulez-vous modifier? '));
                     disp(monInv.voiture(nbVoiture))
-                    %choix = saisirChoix('Quel attribut voulez-vous modifier? ');
                     monInv.modifierVoiture(nbVoiture)
                     
                     else 
@@ -111,9 +110,9 @@ quit = false;
 
                 case 7 % Sauvegarder l''inventaire
                     if invCharger == true
-                    sauvegardeMonInv(monInv)
+                    monInv.sauvegardeMonInv(monInv)
                     sauvegarder = true;
-                    fprintf('Le fichier à été enregistré');
+                    fprintf('Le fichier à été enregistré\n');
                     else 
                       fprintf('L''inventaire doit être préalablement chargé\n')  
                     end

@@ -51,14 +51,14 @@ classdef Inventaire < handle
     
     methods (Access = public)
       % Supprimer une voiture
-      function supprimerVoiture(mon_inv,nbVoiture)
-          Voiture = mon_inv.voiture(nbVoiture,1);
+      function supprimerVoiture(monInv,nbVoiture)
+          Voiture = monInv.voiture(nbVoiture);
           setNbVoiture(Voiture,"NULL")
           
           %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
           %de "trou" dans les numéros
-          for i = nbVoiture+1:1:size(mon_inv.voiture,1)
-              Voiture = mon_inv.voiture(i,1);
+          for i = nbVoiture+1:1:size(monInv.voiture,1)
+              Voiture = monInv.voiture(i,1);
               nouveauNum = getNbVoiture(Voiture);
               setNbVoiture(Voiture,(nouveauNum-1))
           end
@@ -70,42 +70,48 @@ classdef Inventaire < handle
         %Modifier une voiture
         
         function modifierVoiture(monInv, nbVoiture)
-            i =1;
-            while i < ATTRIBUTS
-                if monInv.voiture(i).getNbVoiture == nbVoiture
-                    choixModAttribut()
-                    choix = saisirChoix();
+                     
+                     %Affichage du mini menu pour choisir l'attribut à
+                     %modifier
+                     fprintf('***** MODIFICATION D''ATTRIBUT *****\n');
+                     fprintf('1) Marque\n');
+                     fprintf('2) Modèle\n');
+                     fprintf('3) Année\n');
+                     fprintf('4) Consommation combinée\n');
+                     fprintf('5) Consommation en ville\n');
+                     fprintf('6) Consommation sur l''autoroute\n');
+                     fprintf('7) Quitter\n');
+                     choix = input('Quel attribut voulez-vous modifier? ');
                     
                     switch choix
                         case MARQUE
-                            monInv.voiture(i).setMarque(input('Entrer la nouvelle marque: \n','s'))
+                            marque = input('Entrer la nouvelle marque: ','s');
+                            monInv.voiture(nbVoiture).setMarque(marque)
                             
                         case MODELE
-                            monInv.voiture(i).setModele(input('Entrer le nouveau modèle: \n','s'))
+                            modele = input('Entrer le nouveau modèle: ','s');
+                            monInv.voiture(nbVoiture).setModele(modele)                            
                             
                         case ANNEE
-                            monInv.voiture(i).setAnnee(input ...
-                            ('Entrer la nouvelle année: \n','s'))
+                            annee = input('Entrer la nouvelle année: ','s');
+                            monInv.voiture(nbVoiture).setAnnee(annee)
                             
                         case COMBINEE
-                            monInv.consommation(i).setCombinee(input ... 
-                            ('Entrer la nouvelle consommation combinée: \n','s'))
+                            combinee = input('Entrer la nouvelle consommation combinée: ','s');
+                            monInv.consommation(nbVoiture).setCombinee(combinee)
                             
                         case VILLE
-                            monInv.consommation(i).setVille(input ...
-                            ('Entrer la nouvelle consommation en ville: \n','s'))
+                            ville = input('Entrer la nouvelle consommation en ville: ','s');
+                            monInv.consommation(nbVoiture).setVille(ville)
                             
                         case AUTOROUTE
-                            monInv.consommation(i).setAutoroute(input ...
-                            ('Entrer la nouvelle consommation sur l''autoroute: \n','s'))
+                            input('Entrer la nouvelle consommation sur l''autoroute: ','s');
+                            monInv.consommation(nbVoiture).setAutoroute(autoroute)
                             
                         case QUITTER
                             fprintf('Fin des modifications\n')
-                            i = 7;
-                    end
-                end
-            end
-            i = i + 1;
+                            
+                    end            
         end
         
     end
