@@ -14,5 +14,6 @@ fprintf('\n6) Modifier un véhicule');
 fprintf('\n7) Sauvegarder l''inventaire');
 fprintf('\n8) Afficher k meilleur');
 fprintf('\n9) Quitter');
+fprintf('\n');
 
 end
