@@ -3,21 +3,26 @@
 % PAR           : Daniel Velenosi, Simon Tremblay, Daniele Sciascia et
 %                 Alvin Le
 % DATE          : 24/07/2020
-% DESCRIPTION   : 
+% DESCRIPTION   :
 %--------------------------------------------------------------------------
 % PARAMÈTRES :
 %
 % RETOUR :
-% 
+%
 %--------------------------------------------------------------------------
 % VARIABLES UTILISÉES :
-% 
+%
 %--------------------------------------------------------------------------
 function TP3()
 
-addpath('Inventaire');
-addpath('Voiture');
-addpath('Consommation');
+% addpath('Inventaire.m');
+% addpath('Voiture');
+% addpath('Consommation');
+% monInventaire = Inventaire();
+%monInventaire.lireData();
+%lesVoiture = lireData();
+%myInv.Voiture
+%myInv.voiture;
 
 % Affichage du menu
 fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
@@ -29,12 +34,12 @@ fprintf('\n5) Supprimer un véhicule');
 fprintf('\n6) Modifier un véhicule');
 fprintf('\n7) Sauvegarder l''inventaire');
 fprintf('\n8) Afficher k meilleur');
-fprintf('\n9) Quitter');
-
+fprintf('\n9) Quitter\n');
+choix = input('# ');
 % Gestion du menu
 % One of these below
 % 1) Charger l'inventaire
-inventaire = lireData();
+%inventaire = lireData();
 % voiture = lireData();
 
 % Fonction Gestion des erreurs
@@ -46,41 +51,80 @@ inventaire = lireData();
 % Afficher k meilleure propose de sauvegarder les résultats dans un fichier texte.
 
 % Enregistrer les meilleures voitures
-% Fonction qui reçoit l’inventaire ainsi que le tableau des résultats obtenus par la fonction trouver les meilleures voitures. 
+% Fonction qui reçoit l’inventaire ainsi que le tableau des résultats obtenus par la fonction trouver les meilleures voitures.
 % Elle enregistre les résultats dans un fichier texte. Voir l’annexe pour avoir une idée du résultat attendu.
 
-choix = input('# ');
+while choix ~= 1
+    fprintf('L''inventaire doit préalablement être chargé\n');
+    fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
+    fprintf('\n1) Charger inventaire');
+    fprintf('\n2) Afficher les caractéristiques d''une voiture');
+    fprintf('\n3) Afficher les caractéristiques de toutes les voitures');
+    fprintf('\n4) Ajouter un véhicule');
+    fprintf('\n5) Supprimer un véhicule');
+    fprintf('\n6) Modifier un véhicule');
+    fprintf('\n7) Sauvegarder l''inventaire');
+    fprintf('\n8) Afficher k meilleur');
+    fprintf('\n9) Quitter\n');
+    choix = input('# ');
+end   
 
+if choix == 1
     switch choix
-        if choix ~= 2
+        
+        case 1 % Charger inventaire
+            monInventaire = Inventaire();
             fprintf('L''inventaire doit préalablement être chargé\n');
-            affichageMenu()
-        else
-            case 1 % Charger inventaire
-                
-            case 2 % Afficher les caractéristiques d'une voiture
-                
-            case 3 % Afficher les caractéristiques de toutes les voitures
-                
-            case 4 % Ajouter un véhicule
-                
-            case 5 % Supprimer un véhicule
-                
-            case 6 % Modifier un véhicule
-                
-            case 7 % Sauvegarder l''inventaire
-                
-            case 8 % Afficher k meilleur
-                
-            case 9 % Quitter
-                choix_quit = input('Voulez-vous sauvegarder avant de quitter? (O/N) ');
-                if choix == O || choix == o
+            fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
+            fprintf('\n1) Charger inventaire');
+            fprintf('\n2) Afficher les caractéristiques d''une voiture');
+            fprintf('\n3) Afficher les caractéristiques de toutes les voitures');
+            fprintf('\n4) Ajouter un véhicule');
+            fprintf('\n5) Supprimer un véhicule');
+            fprintf('\n6) Modifier un véhicule');
+            fprintf('\n7) Sauvegarder l''inventaire');
+            fprintf('\n8) Afficher k meilleur');
+            fprintf('\n9) Quitter\n');
+            choix = input('# ');
+            
+    end
+        if choix ~= 1
+            switch choix
+                case 2 % Afficher les caractéristiques d'une voiture
+                    fprintf('You clicked 2 \n');
                     
-                else
-                end
-
-            otherwise
+                case 3 % Afficher les caractéristiques de toutes les voitures
+                    fprintf('You clicked 3 \n');
+                    
+                case 4 % Ajouter un véhicule
+                    fprintf('You clicked 4 \n');
+                    
+                case 5 % Supprimer un véhicule
+                    fprintf('You clicked 5 \n');
+                    
+                case 6 % Modifier un véhicule
+                    fprintf('You clicked 6 \n');
+                    
+                case 7 % Sauvegarder l''inventaire
+                    fprintf('You clicked 7 \n');
+                    
+                case 8 % Afficher k meilleur
+                    fprintf('You clicked 8 \n');
+                    
+                case 9 % Quitter
+                    choix_quit = input('Voulez-vous sauvegarder avant de quitter? (O/N) ');
+                    if choix == O || choix == o
+                        
+                    else
+                    end
+                    
+                otherwise
+            end
         end
     end
-%rmpath
+    
+% else
+%     fprintf('L''inventaire doit préalablement être chargé\n');
+%     TP3();
+% rmpath('Inventaire');
 end
