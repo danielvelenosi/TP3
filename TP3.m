@@ -18,23 +18,10 @@ function TP3()
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
-% monInventaire = Inventaire();
-%monInventaire.lireData();
-%lesVoiture = lireData();
-%myInv.Voiture
-%myInv.voiture;
+monInventaire = Inventaire();
 
 % Affichage du menu
-fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
-fprintf('\n1) Charger inventaire');
-fprintf('\n2) Afficher les caractéristiques d''une voiture');
-fprintf('\n3) Afficher les caractéristiques de toutes les voitures');
-fprintf('\n4) Ajouter un véhicule');
-fprintf('\n5) Supprimer un véhicule');
-fprintf('\n6) Modifier un véhicule');
-fprintf('\n7) Sauvegarder l''inventaire');
-fprintf('\n8) Afficher k meilleur');
-fprintf('\n9) Quitter\n');
+affichageMenu();
 choix = input('# ');
 % Gestion du menu
 % One of these below
@@ -55,17 +42,8 @@ choix = input('# ');
 % Elle enregistre les résultats dans un fichier texte. Voir l’annexe pour avoir une idée du résultat attendu.
 
 while choix ~= 1
-    fprintf('L''inventaire doit préalablement être chargé\n');
-    fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
-    fprintf('\n1) Charger inventaire');
-    fprintf('\n2) Afficher les caractéristiques d''une voiture');
-    fprintf('\n3) Afficher les caractéristiques de toutes les voitures');
-    fprintf('\n4) Ajouter un véhicule');
-    fprintf('\n5) Supprimer un véhicule');
-    fprintf('\n6) Modifier un véhicule');
-    fprintf('\n7) Sauvegarder l''inventaire');
-    fprintf('\n8) Afficher k meilleur');
-    fprintf('\n9) Quitter\n');
+affichageMenu();
+fprintf('L''inventaire doit préalablement être chargé\n');
     choix = input('# ');
 end   
 
@@ -73,18 +51,9 @@ if choix == 1
     switch choix
         
         case 1 % Charger inventaire
-            monInventaire = Inventaire();
-            fprintf('L''inventaire doit préalablement être chargé\n');
-            fprintf('**************** GESTIONNAIRE D''INVENTAIRE ****************');
-            fprintf('\n1) Charger inventaire');
-            fprintf('\n2) Afficher les caractéristiques d''une voiture');
-            fprintf('\n3) Afficher les caractéristiques de toutes les voitures');
-            fprintf('\n4) Ajouter un véhicule');
-            fprintf('\n5) Supprimer un véhicule');
-            fprintf('\n6) Modifier un véhicule');
-            fprintf('\n7) Sauvegarder l''inventaire');
-            fprintf('\n8) Afficher k meilleur');
-            fprintf('\n9) Quitter\n');
+            %monInventaire = Inventaire();
+            lesVoiture = monInventaire.voiture();
+            affichageMenu();
             choix = input('# ');
             
     end
