@@ -8,7 +8,7 @@ classdef Inventaire < handle
     
     methods (Access = public)
         %Charger l'inventaire
-        function MON_INV = Inventaire()
+        function monInv = Inventaire()
             % Initialisation des variables
             i = 1;
             %voiture = [];
@@ -27,8 +27,8 @@ classdef Inventaire < handle
                     ville = double(string(data(6)));
                     autoroute = double(string(data(7)));
 
-                    MON_INV.consommation(i) = Consommation(combinee,ville,autoroute);
-                    MON_INV.voiture(i) = Voiture(nbVoiture,marque,modele,annee,MON_INV.consommation(i));
+                    monInv.consommation(i) = Consommation(combinee,ville,autoroute);
+                    monInv.voiture(i) = Voiture(nbVoiture,marque,modele,annee,monInv.consommation(i));
 
                    
                     i = i + 1;
@@ -42,30 +42,51 @@ classdef Inventaire < handle
     
     methods (Access = public)
       % Ajouter une voiture
-      function voiture = creerVoiture(mon_inv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)
-%           voiture = Voiture();
-%           
-%           voiture.nbVoiture = nbVoiture;
-%           voiture.marque = marque;
-%           voiture.modele = modele;
-%           voiture.annee = annee;
-%           voiture.combinee = combinee;
-%           voiture.ville = ville;
-%           voiture.autoroute = autoroute;
-          
+      function voiture = creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)         
           consommation = Consommation(combinee,ville,autoroute);
           voiture = Voiture(nbVoiture,marque,modele,annee,consommation);
-          mon_inv.voiture = [mon_inv.voiture;voiture];
+          monInv.voiture = [monInv.voiture;voiture];
       end
     end
     
     methods (Access = public)
       % Supprimer une voiture
+      function supprimerVoiture(mon_inv,nbVoiture)
+          Voiture = mon_inv.voiture(nbVoiture,1);
+          setNbVoiture(Voiture,"NULL")
+          
+          for i = nbVoiture+1:1:size(mon_inv.voiture,1)
+              Voiture = mon_inv.voiture(i,1);
+              nouveauNum = getNbVoiture(Voiture);
+              setNbVoiture(Voiture,(nouveauNum-1))
+          end
+      end
       
     end
     
     methods (Access = public)
-      %Modifier une voiture
+    %Modifier une voiture
+      
+    function modifierVoiture(monInv, nbVoiture)
+        i =1;
+        
+            
+        
+        
+        
+        
+        
+        end
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
     end
     
@@ -76,8 +97,6 @@ classdef Inventaire < handle
     
     methods (Access = public)
         % Afficher l'inventaire de voiture
-        function disp(lesVoiture)
-        end
     end
 
     

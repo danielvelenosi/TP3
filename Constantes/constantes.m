@@ -1,0 +1,1 @@
+ATTRIBUTS = 7;
