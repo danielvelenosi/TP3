@@ -45,7 +45,7 @@ choix = input('# ');
 while choix ~= 1
     fprintf('L''inventaire doit préalablement être chargé\n');
     affichageMenu();
-    choix = input('# ');
+    choix = saisirChoix('#');
 end   
 
 if choix == 1
@@ -54,14 +54,14 @@ if choix == 1
         case 1 % Charger inventaire
             monInv = Inventaire();
             affichageMenu();
-            choix = input('# ');
+            choix = saisirChoix('#');
             
     end
         if choix ~= 1
             switch choix
                 case 2 % Afficher les caractéristiques d'une voiture
                     fprintf('#2 \n');
-                    i = input('Quelle voiture voulez vous voir? ');
+                    i = saisirChoix('Quelle voiture voulez-vous voir ? '); 
                     disp(monInv(i))
                     affichageMenu()
                     
@@ -72,27 +72,27 @@ if choix == 1
                     
                 case 4 % Ajouter un véhicule
                     fprintf('#4 \n');
-                    nbVoiture = input('Numéro d''identification: \n');
-                    marque = input('Marque: \n');
-                    modele = input('Modele: \n');
-                    annee = input('Année: \n');
-                    combinee = input('Consommation combinée: \n');
-                    ville = input('Consommation en ville: \n');
-                    autoroute = input('Consommation sur l''autoroute: \n');
+                    nbVoiture = saisirChoix('Numéro d''identification: \n');
+                    marque = saisirChoix('Marque: \n');
+                    modele = saisirChoix('Modele: \n');
+                    annee = saisirChoix('Année: \n');
+                    combinee = saisirChoix('Consommation combinée: \n');
+                    ville = saisirChoix('Consommation en ville: \n');
+                    autoroute = saisirChoix('Consommation sur l''autoroute: \n');
                     creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute);
                     affichageMenu()
                     
                 case 5 % Supprimer un véhicule
                     fprintf('#5 \n');
-                    nbVoiture = input('Quel voiture voulez-vous supprimer? ');
+                    nbVoiture = saisirChoix('Quel voiture voulez-vous supprimer? ');
                     supprimerVoiture(monInv,nbVoiture);
                     fprintf('La voiture à bien été supprimée\n')
                     affichageMenu()
                     
                 case 6 % Modifier un véhicule
                     fprintf('#6 \n');
-                    nbVoiture = input('Quelle voiture voulez-vous modifier? \n');
-                    i = input('Quel attribut voulez-vous modifier? \n');
+                    nbVoiture = saisirChoix('Quelle voiture voulez-vous modifier? \n');
+                    i = saisirChoix('Quel attribut voulez-vous modifier? \n');
                     disp(monInv(i))
                     %choix = saisirChoix('Quel attribut voulez-vous modifier?',1,7);
                     modifierVoiture(monInv,nbVoiture)
@@ -108,7 +108,7 @@ if choix == 1
                     fprintf('#8 \n');
                     
                 case 9 % Quitter
-                    choix_quit = input('Voulez-vous sauvegarder avant de quitter? (O/N) ');
+                    choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
                     if choix == O || choix == o
                         sauvegardeMonInv(monInv)
                     else
