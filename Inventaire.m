@@ -134,7 +134,61 @@ classdef Inventaire < handle
     
     methods (Access = public)
       %Trouver les meilleures voitures
-      
+      function voituresTriees = trouverMeilleuresVoiture(monInv, nbVoitures, consommation)
+          
+          %Si on veut la consommation combinée
+          if consommation == 1
+              
+              %Initialisation du tableau
+              voituresTriees = zeros(size(consommation(combinee),1),2);
+              
+              %On remplie le tableau
+              for i = 1 : numel(monInv.consommation)
+                  voituresTriees(i,1) = i;
+                  voituresTriees(i,2) = consommation(1,2);
+              end
+              
+              %On fait appel à une fonction pour trier les consommations
+              voituresTriees = trierResultat(voituresTriees);
+              
+              %On affiche le nombre de voitures selon l'entrée
+              voituresTriees(1:nbVoitures,1:2);
+              
+          elseif consommation == 2
+              
+              %Initialisation du tableau
+              voituresTriees = zeros(size(consommation(ville),1),2);
+              
+              %On remplie le tableau
+              for i = 1 : numel(monInv.consommation)
+                  voituresTriees(i,1) = i;
+                  voituresTriees(i,2) = consommation(1,2);
+              end
+              
+              %On fait appel à une fonction pour trier les consommations
+              voituresTriees = trierResultat(voituresTriees);
+              
+              %On affiche le nombre de voitures selon l'entrée
+              voituresTriees(1:nbVoitures,1:2);
+              
+          elseif consommation == 3
+              %Initialisation du tableau
+              voituresTriees = zeros(size(consommation(autoroute),1),2);
+              
+              %On remplie le tableau
+              for i = 1 : numel(monInv.consommation)
+                  voituresTriees(i,1) = i;
+                  voituresTriees(i,2) = consommation(1,2);
+              end
+              
+              %On fait appel à une fonction pour trier les consommations
+              voituresTriees = trierResultat(voituresTriees);
+              
+              %On affiche le nombre de voitures selon l'entrée
+              voituresTriees(1:nbVoitures,1:2);
+              
+          end
+      end
     end
     
     methods (Access = public)
