@@ -3,56 +3,60 @@ classdef Inventaire < handle
     %   Detailed explanation goes here
     properties (Access = public)
         voiture Voiture;
+        consommation Consommation;
     end
     
     methods (Access = public)
         %Charger l'inventaire
-        function lesVoiture = lireData()
+        function MON_INV = Inventaire()
             % Initialisation des variables
             i = 1;
-            lesVoiture = [];
+            %voiture = [];
             % Ouvrir data.txt
-            fid = fopen('data.txt','w');
-            %Look up fid ... why is fid = 6 in workspace when running lireData with
-            %breakpoint?
+            fid = fopen('data.txt','r');
             if fid ~= -1
                 while ~feof(fid)
                     
                     ligne = fgetl(fid);
                     [data] = textscan(ligne,'%s %s %s %s %s %s %s','delimiter',';');
-                    
                     nbVoiture = double(string(data(1)));
-                    %nbVoiture = double(data(1));
                     marque = string(data(2));
                     modele = string(data(3));
                     annee = string(data(4));
                     combinee = double(string(data(5)));
-                    %combinee = double(data(5));
                     ville = double(string(data(6)));
-                    %ville = double(data(6));
                     autoroute = double(string(data(7)));
-                    %autoroute = double(data(7));
-                    
-                    % I tried all of these and none worked
-                    lesVoiture = [lesVoiture;data];
-                    %lesVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
-                    %maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,combinee,ville,autoroute);
-                    %maVoiture(i) = Voiture(nbVoiture,marque,modele,annee,consommation);
-                    %lesVoiture(i) = Inventaire(voiture);
-                    %maVoiture(i) = Inventaire(nbVoiture,marque,modele,annee,consommation.combinee,consommation.ville,consommation.autoroute);
-                    
+
+                    MON_INV.consommation(i) = Consommation(combinee,ville,autoroute);
+                    MON_INV.voiture(i) = Voiture(nbVoiture,marque,modele,annee,MON_INV.consommation(i));
+
+                   
                     i = i + 1;
                 end
                 fclose(fid);
-%             else
-%                 error('Error Message');
+            else
+                error('Error Message');
             end
         end
     end
     
     methods (Access = public)
-        %Ajouter une voiture
-               
+      % Ajouter une voiture
+      function voiture = creerVoiture(mon_inv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)
+%           voiture = Voiture();
+%           
+%           voiture.nbVoiture = nbVoiture;
+%           voiture.marque = marque;
+%           voiture.modele = modele;
+%           voiture.annee = annee;
+%           voiture.combinee = combinee;
+%           voiture.ville = ville;
+%           voiture.autoroute = autoroute;
+          
+          consommation = Consommation(combinee,ville,autoroute);
+          voiture = Voiture(nbVoiture,marque,modele,annee,consommation);
+          mon_inv.voiture = [mon_inv.voiture;voiture];
+      end
     end
     
     methods (Access = public)
@@ -71,27 +75,9 @@ classdef Inventaire < handle
     end
     
     methods (Access = public)
-%         % Afficher l'inventaire de voiture
-       
-
-%         function voiture = getVoiture(lesVoiture)
-%             %Vecteur dimension de la matrice lesVoiture
-%             sizeVoiture = size(lesVoiture);
-%             %Initialisation compteur pour les lignes
-%             i = 1;
-%             %Initialisation compteur pour les colonnes
-%             j = 1;
-%             %Nombre de lignes
-%             m = sizeVoiture(1);
-%             %Nombre de colonnes
-%             n = sizeVoiture(2);      
-    %             for i = 1 : m
-    %                 for j = 1 : n
-    %                     voiture(i,j) = lesVoiture(i,j); 
-    %                 end
-    %             end
-    %             disp(voiture)
-%         end
+        % Afficher l'inventaire de voiture
+        function disp(lesVoiture)
+        end
     end
 
     
@@ -104,7 +90,13 @@ classdef Inventaire < handle
       %Afficher les meilleures voitures
       
     end
-
+    
+    
+        
+      
+        
+        
+        
         
         %Affichage
 %         function disp(inventaire)
