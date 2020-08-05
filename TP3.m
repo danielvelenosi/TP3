@@ -26,7 +26,7 @@ affichageMenu();
 choix = input('# ');
 % Gestion du menu
 % One of these below
-% 1) Charger l'inventaire 
+% 1) Charger l'inventaire
 %inventaire = lireData();
 % voiture = lireData();
 
