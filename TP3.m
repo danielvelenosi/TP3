@@ -42,7 +42,7 @@ quit = false;
 
  while quit ~= 1
        affichageMenu();
-       choix = saisirChoix('#');
+       choix = str2num(saisirChoix('#'));
   
     switch choix
 %         while invCharger == false 
@@ -57,7 +57,7 @@ quit = false;
 
                 case 2 % Afficher les caractéristiques d'une voiture
                     if invCharger == true
-                    nbVoiture = saisirChoix('Quelle voiture voulez-vous voir ? '); 
+                    nbVoiture = str2num(saisirChoix('Quelle voiture voulez-vous voir ? ')); 
                     disp(monInv.voiture(nbVoiture))  
                     else 
                       fprintf('L''inventaire doit être préalablement chargé\n')  
@@ -75,13 +75,13 @@ quit = false;
 
                 case 4 % Ajouter un véhicule
                     if invCharger == true
-                    nbVoiture = saisirChoix('Numéro d''identification: ');
+                    nbVoiture = numel(monInv.voiture) + 1;
                     marque = saisirChoix('Marque: ');
                     modele = saisirChoix('Modele: ');
                     annee = saisirChoix('Année: ');
-                    combinee = saisirChoix('Consommation combinée: ');
-                    ville = saisirChoix('Consommation en ville: ');
-                    autoroute = saisirChoix('Consommation sur l''autoroute: ');
+                    combinee = str2num(saisirChoix('Consommation combinée: '));
+                    ville = str2num(saisirChoix('Consommation en ville: '));
+                    autoroute = str2num(saisirChoix('Consommation sur l''autoroute: '));
                     creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute);
                     else 
                       fprintf('L''inventaire doit être préalablement chargé\n')  
@@ -90,8 +90,8 @@ quit = false;
 
                 case 5 % Supprimer un véhicule
                     if invCharger == true
-                    nbVoiture = saisirChoix('Quel voiture voulez-vous supprimer? ');
-                    supprimerVoiture(monInv,nbVoiture);
+                    nbVoiture = str2num(saisirChoix('Quel voiture voulez-vous supprimer? '));
+                    monInv.supprimerVoiture(nbVoiture);
                     fprintf('La voiture à bien été supprimée\n')
                     else 
                       fprintf('L''inventaire doit être préalablement chargé\n')  
@@ -100,10 +100,11 @@ quit = false;
 
                 case 6 % Modifier un véhicule
                     if invCharger == true
-                    nbVoiture = saisirChoix('Quelle voiture voulez-vous modifier? \n');
-                    %i = saisirChoix('Quel attribut voulez-vous modifier? \n');
-                    %disp(monInv(i))
-                    modifierVoiture(monInv,nbVoiture)
+                    nbVoiture = str2num(saisirChoix('Quelle voiture voulez-vous modifier? '));
+                    disp(monInv.voiture(nbVoiture))
+                    %choix = saisirChoix('Quel attribut voulez-vous modifier? ');
+                    monInv.modifierVoiture(nbVoiture)
+                    
                     else 
                       fprintf('L''inventaire doit être préalablement chargé\n')  
                     end

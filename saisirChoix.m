@@ -22,7 +22,7 @@ function reponse = saisirChoix(question, min, max)
 if nargin == 1
     
     % On pose la question et on retourne la réponse numérique.
-    reponse = str2num(input(question,'s'));
+    reponse = input(question,'s');
     
     % S'il y a 3 arguments
 elseif nargin == 3
@@ -33,7 +33,7 @@ elseif nargin == 3
     % Tant que l'utilisateur n'est pas dans les bornes min et max on repose
     % la question.
     while valide == 0
-        reponse = str2num(input(question,'s'));
+        reponse = input(question,'s');
         
         % Si la réponse est dans le borne, on sort de la boucle et on
         % retourne la réponse.

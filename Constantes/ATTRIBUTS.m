@@ -1,4 +1,4 @@
 function x = ATTRIBUTS
-    x = 7;
+    x = 6;
 end
 
