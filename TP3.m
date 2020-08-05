@@ -18,6 +18,7 @@ function TP3()
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
+% addpath('Constantes');
 monInventaire = Inventaire();
 
 % Affichage du menu
@@ -60,25 +61,48 @@ if choix == 1
         if choix ~= 1
             switch choix
                 case 2 % Afficher les caractéristiques d'une voiture
-                    fprintf('You clicked 2 \n');
+                    fprintf('#2 \n');
+                    i = input('Quelle voiture voulez vous voir? ');
+                    disp(monInv(i))
+                    affichageMenu()
                     
                 case 3 % Afficher les caractéristiques de toutes les voitures
-                    fprintf('You clicked 3 \n');
+                    fprintf('#3 \n');
+                    disp(monInv.voiture)                  
+                    affichageMenu()
                     
                 case 4 % Ajouter un véhicule
-                    fprintf('You clicked 4 \n');
+                    fprintf('#4 \n');
+                    nbVoiture = input('Numéro d''identification: \n');
+                    marque = input('Marque: \n');
+                    modele = input('Modele: \n');
+                    annee = input('Année: \n');
+                    combinee = input('Consommation combinée: \n');
+                    ville = input('Consommation en ville: \n');
+                    autoroute = input('Consommation sur l''autoroute: \n');
+                    voiture = creerVoiture(nbVoiture,marque,modele,annee,combinee,ville,autoroute);
+                    affichageMenu()
                     
                 case 5 % Supprimer un véhicule
-                    fprintf('You clicked 5 \n');
+                    fprintf('#5 \n');
+                    nbVoiture = input('Quel voiture voulez-vous supprimer? ');
+                    supprimerVoiture(monInv,nbVoiture);
+                    fprintf('La voiture à bien été supprimée\n')
+                    affichageMenu()
                     
                 case 6 % Modifier un véhicule
-                    fprintf('You clicked 6 \n');
+                    fprintf('#6 \n');
+                    
+                    affichageMenu()
                     
                 case 7 % Sauvegarder l''inventaire
-                    fprintf('You clicked 7 \n');
+                    fprintf('#7 \n');
+                    sauvegardeMonInv(monInv)
+                    fprintf('Le fichier à été enregistré');
+                    affichageMenu()
                     
                 case 8 % Afficher k meilleur
-                    fprintf('You clicked 8 \n');
+                    fprintf('#8 \n');
                     
                 case 9 % Quitter
                     choix_quit = input('Voulez-vous sauvegarder avant de quitter? (O/N) ');
@@ -96,4 +120,7 @@ if choix == 1
 %     fprintf('L''inventaire doit préalablement être chargé\n');
 %     TP3();
 % rmpath('Inventaire');
+% rmpath('Voiture');
+% rmpath('Consommation');
+% rmpath('Constantes');
 end

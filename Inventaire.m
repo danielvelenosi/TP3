@@ -45,7 +45,7 @@ classdef Inventaire < handle
       function voiture = creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)         
           consommation = Consommation(combinee,ville,autoroute);
           voiture = Voiture(nbVoiture,marque,modele,annee,consommation);
-          monInv.voiture = [monInv.voiture;voiture];
+          monInv.voiture = [monInv.voiture voiture];
       end
     end
     
@@ -55,6 +55,8 @@ classdef Inventaire < handle
           Voiture = mon_inv.voiture(nbVoiture,1);
           setNbVoiture(Voiture,"NULL")
           
+          %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
+          %de "trou" dans les numéros
           for i = nbVoiture+1:1:size(mon_inv.voiture,1)
               Voiture = mon_inv.voiture(i,1);
               nouveauNum = getNbVoiture(Voiture);
@@ -115,8 +117,7 @@ classdef Inventaire < handle
             if fid == -1
                 error('Le fichier n''a pu être sauvegardé.');
             end
-            fclose(fid);
-            fprintf('Le fichier à été enregistré');  
+            fclose(fid); 
       end
     end
     
