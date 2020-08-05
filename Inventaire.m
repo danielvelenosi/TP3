@@ -199,7 +199,11 @@ classdef Inventaire < handle
     
     methods (Access = public)
       %Afficher les meilleures voitures
-      
+      function tableauMeilleuresVoitures = afficherMeilleuresVoitures(inv, voituresTriees, consommation)
+            for i = 1 : numel(voitureTriees);
+            disp(monInv.voiureTriees(i));
+            end
+        end
     end
     
     
