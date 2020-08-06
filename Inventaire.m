@@ -10,11 +10,13 @@ classdef Inventaire < handle
     properties (Access = public)
         %On appelle la classe Voiture
         voiture Voiture;
+        
         %On appelle la classe Consommation
         consommation Consommation;
     end
     
     methods (Access = public)
+        
         %Charger l'inventaire
         function monInv = Inventaire()
             
@@ -83,15 +85,16 @@ classdef Inventaire < handle
             maVoiture = monInv.voiture(nbVoiture);
             %On met l'identifiant de la voiture à "NULL" pour ne pas qu'elle
             %soit enregistrée
-            maVoiture.setNbVoiture("NULL")
             
+            maVoiture.setNbVoiture("NULL")
             %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
             %de "trou" dans les numéros
-            for i = nbVoiture+1:1:size(monInv.voiture,1)
-                maVoiture = monInv.voiture(i,1);
+            
+            for i = numel(monInv.voiture):1
+                % Nous cherchons le long de la ligne 1
+                maVoiture = monInv.voiture(1,i);
                 nouveauNum = getNbVoiture(maVoiture);
-                %setNbVoiture(maVoiture,(nouveauNum-1))
-                maVoiture.setNbVoiture(nouveauNum-1)
+                maVoiture.setNbVoiture(nouveauNum+1)
             end
         end
         
@@ -166,6 +169,7 @@ classdef Inventaire < handle
                 for i = 1:numel(monInv.voiture)
                     voiture = monInv.voiture(i);
                     % VERIFIER PAR NULL
+                    
                     if string(monInv.voiture(i).getNbVoiture()) == "NULL"
                         
                     else
