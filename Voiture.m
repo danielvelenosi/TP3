@@ -6,6 +6,8 @@
 %                 avec les paramètres suivants:
 % -------------------------------------------------------------------------
 classdef Voiture < handle
+    
+    % Proprietées de la classe voiture
     properties (Access = public)
         nbVoiture;
         marque;
@@ -15,7 +17,7 @@ classdef Voiture < handle
 	end
 	
 	methods (Access = public)
-        % Constructeur
+        % % Constructeur des propriétées de la classe voiture
 	    function voiture = Voiture(nbVoiture,marque,modele,annee,consommation)
 		    voiture.nbVoiture = nbVoiture;
             voiture.marque = marque;
@@ -23,15 +25,9 @@ classdef Voiture < handle
 		    voiture.annee = annee;
             voiture.consommation = consommation;
 
-
-%             nouveau.consommation.ville = consommation.ville;
-%             nouveau.consommation.autoroute = consommation.autoroute;
-%             nouveau.cons_comb = cons_comb;
-%             nouveau.cons_ville = cons_ville;
-%             nouveau.cons_autoroute = cons_autoroute;
         end
 		
-        % Accesseur       
+        % Accesseur des propriétées de la classe voiture   
         function nbVoiture = getNbVoiture(voiture)
             nbVoiture = voiture.nbVoiture;
         end
@@ -52,12 +48,12 @@ classdef Voiture < handle
             consommation = voiture.consommation;
         end
                 
-       %Mutateur
+        % Mutateur des propriétées de la classe voiture
         function setNbVoiture(voiture,nbVoiture)
             voiture.nbVoiture  = nbVoiture;
         end
        
-       function setMarque(voiture,marque)
+        function setMarque(voiture,marque)
             voiture.marque  = marque;
         end
         
@@ -74,7 +70,7 @@ classdef Voiture < handle
         end
         
 
-        % Affichage
+        % Affichage "Display" pour la consommation et pour la classe
         function disp(voiture)
           fprintf('\t Marque                            : %s \n', (voiture.marque));
           fprintf('\t Modele                            : %s \n', (voiture.modele));
