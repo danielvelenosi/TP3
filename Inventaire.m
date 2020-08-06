@@ -60,7 +60,8 @@ classdef Inventaire < handle
           for i = nbVoiture+1:1:size(monInv.voiture,1)
               maVoiture = monInv.voiture(i,1);
               nouveauNum = getNbVoiture(maVoiture);
-              setNbVoiture(maVoiture,(nouveauNum-1))
+              %setNbVoiture(maVoiture,(nouveauNum-1))
+              maVoiture.setNbVoiture(nouveauNum-1)
           end
       end
       
@@ -82,7 +83,7 @@ classdef Inventaire < handle
                      fprintf('6) Consommation sur l''autoroute\n');
                      fprintf('7) Quitter\n');
                      choix = input('Quel attribut voulez-vous modifier? ');
-                    
+                                                                 
                     switch choix
                         case MARQUE
                             marque = input('Entrer la nouvelle marque: ','s');
@@ -178,7 +179,7 @@ classdef Inventaire < handle
               
               %On fait appel à une fonction pour trier les consommations
               voituresTriees = trierResultat(voituresTriees);
-              
+       
               %On affiche le nombre de voitures selon l'entrée
               voituresTriees(1:nbVoitures,1:2);
               
@@ -220,29 +221,15 @@ classdef Inventaire < handle
     end
     
     methods (Access = public)
-      %Afficher les meilleures voitures
-      function tableauMeilleuresVoitures = afficherMeilleuresVoitures(inv, voituresTriees, consommation)
-            for i = 1 : numel(voitureTriees);
-            disp(monInv.voiureTriees(i));
+   
+    %Afficher meilleures voitures
+     function afficherMeilleuresVoitures(monInv, tableauTrie)
+            for i = 1 : numel(tableauTrie)
+                maVoiture = monInv.tableau(maVoiture(i,1),1);
+                fprintf("%d)\t\t\t\t%s\t%s\t\t(%.2f)\n",getNbVoiture(maVoiture),...
+                getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
             end
-        end
+        end   
     end
     
-    
-        
-      
-        
-        
-        
-        
-        %Affichage
-%         function disp(inventaire)
-%           fprintf('\t ID                                : %d \n', (inventaire.id));  
-%           fprintf('\t Marque                            : %s \n', (inventaire.voiture.marque));
-%           fprintf('\t Modele                            : %s \n', (inventaire.voiture.modele));
-%           fprintf('\t Annee                             : %s \n', (inventaire.voiture.annee));
-%           fprintf('\t Consommation combinée             : %.2f kWh/100km \n', (inventaire.voiture.consommation.combinee));
-%           fprintf('\t Consommation en ville             : %.2f kWh/100km \n', (inventaire.voiture.consommation.ville));
-%           fprintf('\t Consommation sur l''autoroute      : %.2f kWh/100km \n', (inventaire.voiture.consommation.autoroute));
-%         end   
 end

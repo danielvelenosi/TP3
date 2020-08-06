@@ -89,10 +89,15 @@ while quit ~= 1
             
             
         case 5 % Supprimer un véhicule
-            if invCharger == true && maVoiture.getNbVoiture == 'NULL'
-                nbVoiture = str2num(saisirChoix('Quel voiture voulez-vous supprimer? '));
-                monInv.supprimerVoiture(nbVoiture);
-                fprintf('La voiture à bien été supprimée\n')
+            if invCharger == true  
+                 nbVoiture = str2num(saisirChoix('Quel voiture voulez-vous supprimer? '));
+                 monInv.supprimerVoiture(nbVoiture);
+%                     if maVoiture.getNbVoiture == "NULL"
+%                         fprintf('La voiture a bien été supprimée\n')
+%                     else
+%                         fprintf('La voiture n''a pas été supprimée\n')
+%                     end
+                
             else
                 fprintf('L''inventaire doit être préalablement chargé\n')
             end
@@ -120,7 +125,13 @@ while quit ~= 1
             
         case 8 % Afficher k meilleur
             if invCharger == true
-                
+               fprintf('\n1:Combinee')
+                fprintf('\n2:Ville')
+                fprintf('\n3:Autoroute\n')
+                genreConsommation = saisirChoix('#', 1, 3);
+                combienVoiture = saisirChoix('Combien de voitures voulez-vous avoir dans votre liste ? ');
+                voituresTriees = trouverMeilleuresVoiture(monInv, combienVoiture, genreConsommation);
+                afficherMeilleuresVoitures(monInv,voituresTriees); 
                 
             else
                 fprintf('L''inventaire doit être préalablement chargé\n')
