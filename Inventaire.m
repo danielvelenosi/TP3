@@ -204,61 +204,45 @@ classdef Inventaire < handle
     
     
     methods (Access = public)
+        
         %Trouver les meilleures voitures
         function voituresTriees = trouverMeilleuresVoiture(monInv, nbVoitures, consommation)
             
-            %Si on veut la consommation combinée
-            if consommation == 1
+            %Initialisation du tableau avec des zéros.
+            voituresNonTriees = zeros(size(monInv.voiture,1));
+            % On parcourt un boucle pour remplir le tableau de haut vers le
+            % bas.
+            
+            for i = 1 : size(monInv.voiture,1)
+                %On va chercher les voitures pour remplir le tableau
+                Voiture = monInv.voiture(i,1);
                 
-                %Initialisation du tableau
-                voituresTriees = zeros(size(consommation(combinee),1),2);
-                
-                %On remplie le tableau
-                for i = 1 : numel(monInv.consommation)
-                    voituresTriees(i,1) = i;
-                    voituresTriees(i,2) = consommation(1,2);
+                %Si la consommation est combinée
+                if consommation == 1
+                    %On remplie la 2e colonne du tableau avec la consommation
+                    %combinée
+                    voituresNonTriees(i,2) = getCombinee(Voiture);
+                    
+                %Si la consommation est de ville
+                elseif consommation == 2
+                    %On remplie la 2e colonne du tableau avec la consommation
+                    %de ville
+                    voituresNonTriees(i,2) = getVille(Voiture);
+                    
+                %Si la consommation est d'autoroute
+                elseif consommation == 3
+                    %On remplie la 2e colonne du tableau avec la consommation
+                    %autoroute
+                    voituresNonTriees(i,2) = getAutoroute(Voiture);
                 end
-                
-                %On fait appel à une fonction pour trier les consommations
-                voituresTriees = trierResultat(voituresTriees);
-                
-                %On affiche le nombre de voitures selon l'entrée
-                voituresTriees(1:nbVoitures,1:2);
-                
-            elseif consommation == 2
-                
-                %Initialisation du tableau
-                voituresTriees = zeros(size(consommation(ville),1),2);
-                
-                %On remplie le tableau
-                for i = 1 : numel(monInv.consommation)
-                    voituresTriees(i,1) = i;
-                    voituresTriees(i,2) = consommation(1,2);
-                end
-                
-                %On fait appel à une fonction pour trier les consommations
-                voituresTriees = trierResultat(voituresTriees);
-                
-                %On affiche le nombre de voitures selon l'entrée
-                voituresTriees(1:nbVoitures,1:2);
-                
-            elseif consommation == 3
-                %Initialisation du tableau
-                voituresTriees = zeros(size(consommation(autoroute),1),2);
-                
-                %On remplie le tableau
-                for i = 1 : numel(monInv.consommation)
-                    voituresTriees(i,1) = i;
-                    voituresTriees(i,2) = consommation(1,2);
-                end
-                
-                %On fait appel à une fonction pour trier les consommations
-                voituresTriees = trierResultat(voituresTriees);
-                
-                %On affiche le nombre de voitures selon l'entrée
-                voituresTriees(1:nbVoitures,1:2);
-                
             end
+            
+            % On trie le tableau avec la consommation choisie
+            voituresTriees = trierResultat(voituresNonTriees);
+
+            % On affiche le nombre de voitures selon l'entrée
+            voituresTriees(1:nbVoitures,1:2);
+            
         end
     end
     
@@ -273,6 +257,5 @@ classdef Inventaire < handle
                 getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
             end
         end
-    end
-    
+    end    
 end
