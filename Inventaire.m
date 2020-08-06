@@ -11,9 +11,7 @@ classdef Inventaire < handle
         function monInv = Inventaire()
             % Initialisation des variables
             i = 1;
-            %voiture = [];
-            % Ouvrir data.txt
-            fid = fopen('data.txt','r');
+            fid = fopen(DATA,'r');
             if fid ~= -1
                 while ~feof(fid)
                     
@@ -120,7 +118,7 @@ classdef Inventaire < handle
     methods (Access = public)
       %Sauvegarder l'inventaire de voiture
       function sauvegardeMonInv(monInv)
-          fid = fopen('data.txt','w');
+          fid = fopen(DATA,'w');
             if fid ~= -1
                 for i = 1:numel(monInv.voiture)
                     voiture = monInv.voiture(i);
