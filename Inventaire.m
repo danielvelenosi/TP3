@@ -10,17 +10,20 @@ classdef Inventaire < handle
     properties (Access = public)
         %On appelle la classe Voiture
         voiture Voiture;
+        
         %On appelle la classe Consommation
         consommation Consommation;
     end
     
     methods (Access = public)
+        
         %Charger l'inventaire
         function monInv = Inventaire()
             
             % Initialisation des variables
             i = 1;
-            %Ouvrir le texte 'data.txt' dans la constante DATA
+            %Ouvrir le texte 'data.txt' dans la constante DATA avec
+            %permission 'read'
             fid = fopen(DATA,'r');
             
             %Si on a réussi à ouvrir le fichier
@@ -83,15 +86,16 @@ classdef Inventaire < handle
             maVoiture = monInv.voiture(nbVoiture);
             %On met l'identifiant de la voiture à "NULL" pour ne pas qu'elle
             %soit enregistrée
-            maVoiture.setNbVoiture("NULL")
             
+            maVoiture.setNbVoiture("NULL")
             %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
             %de "trou" dans les numéros
-            for i = nbVoiture+1:1:size(monInv.voiture,1)
-                maVoiture = monInv.voiture(i,1);
+            
+            for i = numel(monInv.voiture):1
+                % Nous cherchons le long de la ligne 1
+                maVoiture = monInv.voiture(1,i);
                 nouveauNum = getNbVoiture(maVoiture);
-                %setNbVoiture(maVoiture,(nouveauNum-1))
-                maVoiture.setNbVoiture(nouveauNum-1)
+                maVoiture.setNbVoiture(nouveauNum+1)
             end
         end
         
@@ -159,13 +163,17 @@ classdef Inventaire < handle
         %Sauvegarder l'inventaire de voiture
         
         function sauvegardeMonInv(monInv)
+            %Ouvrir le texte 'data.txt' dans la constante DATA avec
+            %permission 'write' 
             fid = fopen(DATA,'w');
-            
+            %Si on a réussi à ouvrir le fichier
             if fid ~= -1
                 
                 for i = 1:numel(monInv.voiture)
                     voiture = monInv.voiture(i);
                     % VERIFIER PAR NULL
+                    % Nous remplaçons les lignes dans DATA jusqu'à ce que 
+                    % notre boucle 'for' rencontre une entrée "NULL"
                     if string(monInv.voiture(i).getNbVoiture()) == "NULL"
                         
                     else
