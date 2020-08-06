@@ -1,5 +1,11 @@
+% -------------------------------------------------------------------------
+% FICHIER       : Consommation.m
+% PAR           : Daniel Velenosi, Simon Tremblay, Daniele Sciascia, Alvin Le
+% DATE          : 22/07/2020
+% DESCRIPTION   : classe Consommation qui reçoit des consommations
+% -------------------------------------------------------------------------
 classdef Consommation < handle
-    properties (Access = public)
+    properties (Access = private)
         combinee;
         ville;
         autoroute;

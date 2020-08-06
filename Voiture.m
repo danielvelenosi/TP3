@@ -1,6 +1,6 @@
 % -------------------------------------------------------------------------
 % FICHIER       : Voiture.m
-% PAR           : Daniel Velenosi, Simon Tremblay, Daniele Sciascia
+% PAR           : Daniel Velenosi, Simon Tremblay, Daniele Sciascia, Alvin Le
 % DATE          : 22/07/2020
 % DESCRIPTION   : classe Voiture qui peut ajouter des objets voiture 
 %                 avec les paramètres suivants:
@@ -8,7 +8,7 @@
 classdef Voiture < handle
     
     % Proprietées de la classe voiture
-    properties (Access = public)
+    properties (Access = private)
         nbVoiture;
         marque;
         modele;

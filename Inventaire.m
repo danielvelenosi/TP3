@@ -7,7 +7,7 @@
 % -------------------------------------------------------------------------
 classdef Inventaire < handle
 
-    properties (Access = public)
+    properties (Access = private)
         %On appelle la classe Voiture
         voiture Voiture;
         
@@ -259,10 +259,15 @@ classdef Inventaire < handle
         %Afficher meilleures voitures
         function afficherMeilleuresVoitures(monInv, tableauTrie)
             
+            %Cette fonction ne fonctionne pas, nous avons eu de la
+            %difficulté à aller chercher nos informations dans les tableaux
+            
             for i = 1 : numel(tableauTrie)
-                maVoiture = monInv.tableau(maVoiture(i,1),1);
+                %On affiche le tableau avec les meilleures voiture qu'on à
+                %trouver auparavant
+                maVoiture = monInv.tableau(maVoiture(1,i),1);
                 fprintf("%d)\t\t\t\t%s\t%s\t\t(%.2f)\n",getNbVoiture(maVoiture),...
-                getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
+                getMarque(maVoiture),getModele(maVoiture),Tableau(2,i))
             end
         end
     end    
