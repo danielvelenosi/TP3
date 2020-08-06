@@ -22,7 +22,8 @@ classdef Inventaire < handle
             
             % Initialisation des variables
             i = 1;
-            %Ouvrir le texte 'data.txt' dans la constante DATA
+            %Ouvrir le texte 'data.txt' dans la constante DATA avec
+            %permission 'read'
             fid = fopen(DATA,'r');
             
             %Si on a réussi à ouvrir le fichier
@@ -162,14 +163,17 @@ classdef Inventaire < handle
         %Sauvegarder l'inventaire de voiture
         
         function sauvegardeMonInv(monInv)
+            %Ouvrir le texte 'data.txt' dans la constante DATA avec
+            %permission 'write' 
             fid = fopen(DATA,'w');
-            
+            %Si on a réussi à ouvrir le fichier
             if fid ~= -1
                 
                 for i = 1:numel(monInv.voiture)
                     voiture = monInv.voiture(i);
                     % VERIFIER PAR NULL
-                    
+                    % Nous remplaçons les lignes dans DATA jusqu'à ce que 
+                    % notre boucle 'for' rencontre une entrée "NULL"
                     if string(monInv.voiture(i).getNbVoiture()) == "NULL"
                         
                     else
