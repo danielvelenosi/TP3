@@ -17,7 +17,7 @@ function TP3()
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
-% addpath('Constantes');
+ addpath('Constantes');
 
 
 
@@ -89,7 +89,7 @@ while quit ~= 1
             
             
         case 5 % Supprimer un véhicule
-            if invCharger == true
+            if invCharger == true && maVoiture.getNbVoiture == 'NULL'
                 nbVoiture = str2num(saisirChoix('Quel voiture voulez-vous supprimer? '));
                 monInv.supprimerVoiture(nbVoiture);
                 fprintf('La voiture à bien été supprimée\n')
@@ -141,13 +141,15 @@ while quit ~= 1
             end
     end
     
+% rmpath('Inventaire');
+% rmpath('Voiture');
+% rmpath('Consommation');
+ rmpath('Constantes');
+ 
 end
 %end
 
 % else
 %     fprintf('L''inventaire doit préalablement être chargé\n');
 %     TP3();
-% rmpath('Inventaire');
-% rmpath('Voiture');
-% rmpath('Consommation');
-% rmpath('Constantes');
+

@@ -52,15 +52,15 @@ classdef Inventaire < handle
     methods (Access = public)
       % Supprimer une voiture
       function supprimerVoiture(monInv,nbVoiture)
-          Voiture = monInv.voiture(nbVoiture);
-          setNbVoiture(Voiture,"NULL")
+          maVoiture = monInv.voiture(nbVoiture);
+          maVoiture.setNbVoiture("NULL")
           
           %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
           %de "trou" dans les numéros
           for i = nbVoiture+1:1:size(monInv.voiture,1)
-              Voiture = monInv.voiture(i,1);
-              nouveauNum = getNbVoiture(Voiture);
-              setNbVoiture(Voiture,(nouveauNum-1))
+              maVoiture = monInv.voiture(i,1);
+              nouveauNum = getNbVoiture(maVoiture);
+              setNbVoiture(maVoiture,(nouveauNum-1))
           end
       end
       
