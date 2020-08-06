@@ -7,11 +7,8 @@
 %--------------------------------------------------------------------------
 
 function TP3()
-addpath('Inventaire.m');
-addpath('Voiture');
-addpath('Consommation');
-addpath('utilitaires');
-addpath('Constantes');
+addpath('utilitaires')
+addpath('constantes')
 
 
 %Initialisation des variables
@@ -206,11 +203,7 @@ quit = false;
                 end
         end
     end
-rmpath('Inventaire');
-rmpath('Voiture');
-rmpath('Consommation');
-rmpath('Constantes');
-rmpath('utilitaires');    
+    
 end
 
 
