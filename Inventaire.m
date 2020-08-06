@@ -270,7 +270,7 @@ classdef Inventaire < handle
             for i = 1 : numel(tableauTrie)
                 maVoiture = monInv.tableau(maVoiture(i,1),1);
                 fprintf("%d)\t\t\t\t%s\t%s\t\t(%.2f)\n",getNbVoiture(maVoiture),...
-                    getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
+                getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
             end
         end
     end
