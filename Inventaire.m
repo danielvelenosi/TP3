@@ -1,22 +1,37 @@
+% -------------------------------------------------------------------------
+% FICHIER       : Inventaire.m
+% PAR           : Daniel Velenosi, Simon Tremblay, Daniele Sciascia, Alvin Le
+% DATE          : 22/07/2020
+% DESCRIPTION   : classe Inventaire qui reçoit des voitures et des
+%                 consommations
+% -------------------------------------------------------------------------
 classdef Inventaire < handle
-    %INVENTAIRE Summary of this class goes here
-    %   Detailed explanation goes here
+
     properties (Access = public)
+        %On appelle la classe Voiture
         voiture Voiture;
+        %On appelle la classe Consommation
         consommation Consommation;
     end
     
     methods (Access = public)
         %Charger l'inventaire
         function monInv = Inventaire()
+            
             % Initialisation des variables
             i = 1;
+            %Ouvrir le texte 'data.txt' dans la constante DATA
             fid = fopen(DATA,'r');
+            
+            %Si on a réussi à ouvrir le fichier
             if fid ~= -1
+                
                 while ~feof(fid)
                     
                     ligne = fgetl(fid);
                     [data] = textscan(ligne,'%s %s %s %s %s %s %s','delimiter',';');
+                    %On enregistre les informations dans des constantes
+                    %correspondantes aux classes
                     nbVoiture = double(string(data(1)));
                     marque = string(data(2));
                     modele = string(data(3));
@@ -24,102 +39,130 @@ classdef Inventaire < handle
                     combinee = double(string(data(5)));
                     ville = double(string(data(6)));
                     autoroute = double(string(data(7)));
-
+                    
+                    %On crée un inventaire pour les consommations
                     monInv.consommation(i) = Consommation(combinee,ville,autoroute);
+                    %On crée un inventaire pour les voitures contenants
+                    %l'inventaire de consommations
                     monInv.voiture(i) = Voiture(nbVoiture,marque,modele,annee,monInv.consommation(i));
-
-                   
+                    
+                    %On recommence la boucle pour toutes les informations
+                    %du fichier
                     i = i + 1;
                 end
                 fclose(fid);
             else
+                %Si le fichier n'a pu être ouvert, on envoit un message
+                %d'erreur
                 error('Error Message');
             end
         end
     end
     
     methods (Access = public)
-      % Ajouter une voiture
-      function voiture = creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)         
-          consommation = Consommation(combinee,ville,autoroute);
-          voiture = Voiture(nbVoiture,marque,modele,annee,consommation);
-          monInv.voiture = [monInv.voiture voiture];
-      end
-    end
-    
-    methods (Access = public)
-      % Supprimer une voiture
-      function supprimerVoiture(monInv,nbVoiture)
-          maVoiture = monInv.voiture(nbVoiture);
-          maVoiture.setNbVoiture("NULL")
-          
-          %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
-          %de "trou" dans les numéros
-          for i = nbVoiture+1:1:size(monInv.voiture,1)
-              maVoiture = monInv.voiture(i,1);
-              nouveauNum = getNbVoiture(maVoiture);
-              %setNbVoiture(maVoiture,(nouveauNum-1))
-              maVoiture.setNbVoiture(nouveauNum-1)
-          end
-      end
-      
-    end
-    
-    methods (Access = public)
-        %Modifier une voiture
+        % Ajouter une voiture
+        %On crée une voiture avec toutes les informations des classes qu'on
+        %va chercher dans inventaire
         
-        function modifierVoiture(monInv, nbVoiture)
-                     
-                     %Affichage du mini menu pour choisir l'attribut à
-                     %modifier
-                     fprintf('***** MODIFICATION D''ATTRIBUT *****\n');
-                     fprintf('1) Marque\n');
-                     fprintf('2) Modèle\n');
-                     fprintf('3) Année\n');
-                     fprintf('4) Consommation combinée\n');
-                     fprintf('5) Consommation en ville\n');
-                     fprintf('6) Consommation sur l''autoroute\n');
-                     fprintf('7) Quitter\n');
-                     choix = input('Quel attribut voulez-vous modifier? ');
-                                                                 
-                    switch choix
-                        case MARQUE
-                            marque = input('Entrer la nouvelle marque: ','s');
-                            monInv.voiture(nbVoiture).setMarque(marque)
-                            
-                        case MODELE
-                            modele = input('Entrer le nouveau modèle: ','s');
-                            monInv.voiture(nbVoiture).setModele(modele)                            
-                            
-                        case ANNEE
-                            annee = input('Entrer la nouvelle année: ','s');
-                            monInv.voiture(nbVoiture).setAnnee(annee)
-                            
-                        case COMBINEE
-                            combinee = input('Entrer la nouvelle consommation combinée: ','s');
-                            monInv.consommation(nbVoiture).setCombinee(combinee)
-                            
-                        case VILLE
-                            ville = input('Entrer la nouvelle consommation en ville: ','s');
-                            monInv.consommation(nbVoiture).setVille(ville)
-                            
-                        case AUTOROUTE
-                            input('Entrer la nouvelle consommation sur l''autoroute: ','s');
-                            monInv.consommation(nbVoiture).setAutoroute(autoroute)
-                            
-                        case QUITTER
-                            fprintf('Fin des modifications\n')
-                            
-                    end            
+        function voiture = creerVoiture(monInv,nbVoiture,marque,modele,annee,combinee,ville,autoroute)
+            %La consommation est ajoutée dans leur propre objet
+            consommation = Consommation(combinee,ville,autoroute);
+            %La voiture est ajouté dans son propre objet, contennant la
+            %consommation
+            voiture = Voiture(nbVoiture,marque,modele,annee,consommation);
+            %On ajoute la nouvelle voiture à la fin de l'inventaire
+            monInv.voiture = [monInv.voiture voiture];
+        end
+    end
+    
+    methods (Access = public)
+        % Supprimer une voiture
+        %On va chercher la voiture qu'on veut dans l'inventaire
+        
+        function supprimerVoiture(monInv,nbVoiture)
+            maVoiture = monInv.voiture(nbVoiture);
+            %On met l'identifiant de la voiture à "NULL" pour ne pas qu'elle
+            %soit enregistrée
+            maVoiture.setNbVoiture("NULL")
+            
+            %Pour replacer toutes les voitures dans l'ordre sans qu'il y ait
+            %de "trou" dans les numéros
+            for i = nbVoiture+1:1:size(monInv.voiture,1)
+                maVoiture = monInv.voiture(i,1);
+                nouveauNum = getNbVoiture(maVoiture);
+                %setNbVoiture(maVoiture,(nouveauNum-1))
+                maVoiture.setNbVoiture(nouveauNum-1)
+            end
         end
         
     end
     
     methods (Access = public)
-      %Sauvegarder l'inventaire de voiture
-      function sauvegardeMonInv(monInv)
-          fid = fopen(DATA,'w');
+        %Modifier une voiture
+        %On va chercher la voiture qu'on veut modifier dans l'inventaire
+        function modifierVoiture(monInv, nbVoiture)
+            
+            %Affichage du mini menu pour choisir l'attribut à
+            %modifier
+            fprintf('***** MODIFICATION D''ATTRIBUT *****\n');
+            fprintf('1) Marque\n');
+            fprintf('2) Modèle\n');
+            fprintf('3) Année\n');
+            fprintf('4) Consommation combinée\n');
+            fprintf('5) Consommation en ville\n');
+            fprintf('6) Consommation sur l''autoroute\n');
+            fprintf('7) Quitter\n');
+            choix = input('Quel attribut voulez-vous modifier? ');
+            
+            switch choix
+                
+                case MARQUE
+                    %Changer la marque de la voiture
+                    marque = input('Entrer la nouvelle marque: ','s');
+                    monInv.voiture(nbVoiture).setMarque(marque)
+                    
+                case MODELE
+                    %Changer le modèle de la voiture
+                    modele = input('Entrer le nouveau modèle: ','s');
+                    monInv.voiture(nbVoiture).setModele(modele)
+                    
+                case ANNEE
+                    %Changer l'annee de la voiture
+                    annee = input('Entrer la nouvelle année: ','s');
+                    monInv.voiture(nbVoiture).setAnnee(annee)
+                    
+                case COMBINEE
+                    %Changer la consommation combinée de la voiture
+                    combinee = input('Entrer la nouvelle consommation combinée: ','s');
+                    monInv.consommation(nbVoiture).setCombinee(combinee)
+                    
+                case VILLE
+                    %Changer la consommation en ville de la voiture
+                    ville = input('Entrer la nouvelle consommation en ville: ','s');
+                    monInv.consommation(nbVoiture).setVille(ville)
+                    
+                case AUTOROUTE
+                    %Changer la consommation sur l'autoroute de la voiture
+                    input('Entrer la nouvelle consommation sur l''autoroute: ','s');
+                    monInv.consommation(nbVoiture).setAutoroute(autoroute)
+                    
+                case QUITTER
+                    %Quitter la modification de la voiture
+                    fprintf('Fin des modifications\n')
+                    
+            end
+        end
+        
+    end
+    
+    methods (Access = public)
+        %Sauvegarder l'inventaire de voiture
+        
+        function sauvegardeMonInv(monInv)
+            fid = fopen(DATA,'w');
+            
             if fid ~= -1
+                
                 for i = 1:numel(monInv.voiture)
                     voiture = monInv.voiture(i);
                     % VERIFIER PAR NULL
@@ -135,99 +178,101 @@ classdef Inventaire < handle
                         ville = conso.getVille();
                         autoroute = conso.getAutoroute();
                         
-                        %monInv.consommation(i) = Consommation(combinee,ville,autoroute);
-                        %monInv.voiture(i) = Voiture(nbVoiture,marque,modele,annee,monInv.consommation(i));
-                        
-                    fprintf(fid,'%d;%s;%s;%s;%.2f;%.2f;%.2f\n',nbVoiture,marque,modele,annee,combinee,ville,autoroute);    
-                    end 
+                        fprintf(fid,'%d;%s;%s;%s;%.2f;%.2f;%.2f\n',nbVoiture,marque,modele,annee,combinee,ville,autoroute);
+                    end
                 end
             else
                 error('Le fichier n''a pu être sauvegardé.');
             end
-            fclose(fid); 
-      end
+            fclose(fid);
+        end
     end
     
     methods (Access = public)
         % Afficher l'inventaire de voiture
+        
         function disp(monInv)
+            %Disp l'inventaire pour toutes les voitures présentes
+            
             for i = 1:numel(monInv.voiture)
+                %Afficher une entête avec le numéro de chaque voiture
                 fprintf('*********************** VOITURE #%d ***********************\n',i);
-                disp(monInv.voiture(i))                
+                disp(monInv.voiture(i))
             end
         end
     end
-
+    
     
     methods (Access = public)
-      %Trouver les meilleures voitures
-      function voituresTriees = trouverMeilleuresVoiture(monInv, nbVoitures, consommation)
-          
-          %Si on veut la consommation combinée
-          if consommation == 1
-              
-              %Initialisation du tableau
-              voituresTriees = zeros(size(consommation(combinee),1),2);
-              
-              %On remplie le tableau
-              for i = 1 : numel(monInv.consommation)
-                  voituresTriees(i,1) = i;
-                  voituresTriees(i,2) = consommation(1,2);
-              end
-              
-              %On fait appel à une fonction pour trier les consommations
-              voituresTriees = trierResultat(voituresTriees);
-       
-              %On affiche le nombre de voitures selon l'entrée
-              voituresTriees(1:nbVoitures,1:2);
-              
-          elseif consommation == 2
-              
-              %Initialisation du tableau
-              voituresTriees = zeros(size(consommation(ville),1),2);
-              
-              %On remplie le tableau
-              for i = 1 : numel(monInv.consommation)
-                  voituresTriees(i,1) = i;
-                  voituresTriees(i,2) = consommation(1,2);
-              end
-              
-              %On fait appel à une fonction pour trier les consommations
-              voituresTriees = trierResultat(voituresTriees);
-              
-              %On affiche le nombre de voitures selon l'entrée
-              voituresTriees(1:nbVoitures,1:2);
-              
-          elseif consommation == 3
-              %Initialisation du tableau
-              voituresTriees = zeros(size(consommation(autoroute),1),2);
-              
-              %On remplie le tableau
-              for i = 1 : numel(monInv.consommation)
-                  voituresTriees(i,1) = i;
-                  voituresTriees(i,2) = consommation(1,2);
-              end
-              
-              %On fait appel à une fonction pour trier les consommations
-              voituresTriees = trierResultat(voituresTriees);
-              
-              %On affiche le nombre de voitures selon l'entrée
-              voituresTriees(1:nbVoitures,1:2);
-              
-          end
-      end
+        %Trouver les meilleures voitures
+        function voituresTriees = trouverMeilleuresVoiture(monInv, nbVoitures, consommation)
+            
+            %Si on veut la consommation combinée
+            if consommation == 1
+                
+                %Initialisation du tableau
+                voituresTriees = zeros(size(consommation(combinee),1),2);
+                
+                %On remplie le tableau
+                for i = 1 : numel(monInv.consommation)
+                    voituresTriees(i,1) = i;
+                    voituresTriees(i,2) = consommation(1,2);
+                end
+                
+                %On fait appel à une fonction pour trier les consommations
+                voituresTriees = trierResultat(voituresTriees);
+                
+                %On affiche le nombre de voitures selon l'entrée
+                voituresTriees(1:nbVoitures,1:2);
+                
+            elseif consommation == 2
+                
+                %Initialisation du tableau
+                voituresTriees = zeros(size(consommation(ville),1),2);
+                
+                %On remplie le tableau
+                for i = 1 : numel(monInv.consommation)
+                    voituresTriees(i,1) = i;
+                    voituresTriees(i,2) = consommation(1,2);
+                end
+                
+                %On fait appel à une fonction pour trier les consommations
+                voituresTriees = trierResultat(voituresTriees);
+                
+                %On affiche le nombre de voitures selon l'entrée
+                voituresTriees(1:nbVoitures,1:2);
+                
+            elseif consommation == 3
+                %Initialisation du tableau
+                voituresTriees = zeros(size(consommation(autoroute),1),2);
+                
+                %On remplie le tableau
+                for i = 1 : numel(monInv.consommation)
+                    voituresTriees(i,1) = i;
+                    voituresTriees(i,2) = consommation(1,2);
+                end
+                
+                %On fait appel à une fonction pour trier les consommations
+                voituresTriees = trierResultat(voituresTriees);
+                
+                %On affiche le nombre de voitures selon l'entrée
+                voituresTriees(1:nbVoitures,1:2);
+                
+            end
+        end
     end
     
     methods (Access = public)
-   
-    %Afficher meilleures voitures
-     function afficherMeilleuresVoitures(monInv, tableauTrie)
+        
+        %Afficher meilleures voitures
+        function afficherMeilleuresVoitures(monInv, tableauTrie)
+            
             for i = 1 : numel(tableauTrie)
                 maVoiture = monInv.tableau(maVoiture(i,1),1);
                 fprintf("%d)\t\t\t\t%s\t%s\t\t(%.2f)\n",getNbVoiture(maVoiture),...
-                getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
+                    getMarque(maVoiture),getModele(maVoiture),Tableau(i,2))
             end
-        end   
+        end
     end
     
 end
