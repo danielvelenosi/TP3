@@ -17,7 +17,7 @@ classdef Voiture < handle
 	end
 	
 	methods (Access = public)
-        % % Constructeur des propriétées de la classe voiture
+        % Constructeur des propriétées de la classe voiture
 	    function voiture = Voiture(nbVoiture,marque,modele,annee,consommation)
 		    voiture.nbVoiture = nbVoiture;
             voiture.marque = marque;
