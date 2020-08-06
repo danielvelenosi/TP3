@@ -120,7 +120,29 @@ classdef Inventaire < handle
       %Sauvegarder l'inventaire de voiture
       function sauvegardeMonInv(monInv)
           fid = fopen('data.txt','w');
-            if fid == -1
+            if fid ~= -1
+                for i = 1:numel(monInv.voiture)
+                    voiture = monInv.voiture(i);
+                    % VERIFIER PAR NULL
+                    if string(monInv.voiture(i).getNbVoiture()) == "NULL"
+                        
+                    else
+                        nbVoiture = monInv.voiture(i).getNbVoiture();
+                        marque = monInv.voiture(i).getMarque();
+                        modele = monInv.voiture(i).getModele();
+                        annee = monInv.voiture(i).getAnnee();
+                        conso = monInv.voiture(i).getConsommation();
+                        combinee = conso.getCombinee();
+                        ville = conso.getVille();
+                        autoroute = conso.getAutoroute();
+                        
+                        %monInv.consommation(i) = Consommation(combinee,ville,autoroute);
+                        %monInv.voiture(i) = Voiture(nbVoiture,marque,modele,annee,monInv.consommation(i));
+                        
+                    fprintf(fid,'%d;%s;%s;%s;%.2f;%.2f;%.2f\n',nbVoiture,marque,modele,annee,combinee,ville,autoroute);    
+                    end 
+                end
+            else
                 error('Le fichier n''a pu être sauvegardé.');
             end
             fclose(fid); 

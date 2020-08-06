@@ -110,7 +110,7 @@ quit = false;
 
                 case 7 % Sauvegarder l''inventaire
                     if invCharger == true
-                    monInv.sauvegardeMonInv(monInv)
+                    monInv.sauvegardeMonInv()
                     sauvegarder = true;
                     fprintf('Le fichier à été enregistré\n');
                     else 
@@ -128,10 +128,10 @@ quit = false;
                         
 
                 case 9 % Quitter
-                     quit = true;
+%                      quit = true;
 %                             choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
-%                             if choix == O || choix == o
-%                                 sauvegardeMonInv(monInv)
+%                             if choix_quit == O || choix_quit == o
+%                                 monInv.sauvegardeMonInv()
 %                            else
     end 
  

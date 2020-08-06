@@ -48,9 +48,9 @@ classdef Voiture < handle
             annee = voiture.annee;
         end
         
-%         function combinee = getCombinee(voiture)
-%             combinee = voiture.consommation.combinee;
-%         end
+        function consommation = getConsommation(voiture)
+            consommation = voiture.consommation;
+        end
                 
        %Mutateur
         function setNbVoiture(voiture,nbVoiture)
