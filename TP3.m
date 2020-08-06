@@ -17,7 +17,7 @@ function TP3()
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
- addpath('Constantes');
+% addpath('Constantes')
 
 
 
@@ -130,24 +130,25 @@ while quit ~= 1
         case 9 % Quitter
             quit = true;
             choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
+            while choix_quit ~= "O" && choix_quit ~= "o" && choix_quit ~= "N" && choix_quit ~= "n"
+                gravite = 0;
+                gestionErreurs('Vous devez choisir entre Y et N', gravite);
+                choix_quit = saisirChoix('Voulez-vous sauvegarder avant de quitter? (O/N) ');
+            end
             if choix_quit == "O" || choix_quit == "o"
                 monInv.sauvegardeMonInv()
             elseif choix_quit == "N" || choix_quit == "n"
                 
-            else 
-                gravite = 0;
-                gestionErreurs('Vous devez choisir entre Y et N', gravite);
-                
             end
     end
     
-% rmpath('Inventaire');
-% rmpath('Voiture');
-% rmpath('Consommation');
- rmpath('Constantes');
- 
+    % rmpath('Inventaire');
+    % rmpath('Voiture');
+    % rmpath('Consommation');
+    %rmpath('Constantes')
+    
 end
-%end
+end
 
 % else
 %     fprintf('L''inventaire doit préalablement être chargé\n');
