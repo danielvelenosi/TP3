@@ -17,7 +17,7 @@ function TP3()
 % addpath('Inventaire.m');
 % addpath('Voiture');
 % addpath('Consommation');
-% addpath('Constantes')
+addpath('Constantes')
 
 
 
